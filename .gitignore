@@ -1,0 +1,60 @@
+# KID Framework Gitignore
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.nfs*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Archive folder (kept intentionally minimal in distribution)
+06-ARCHIVE-ORIGINAL/*.md
+06-ARCHIVE-ORIGINAL/*.txt
+06-ARCHIVE-ORIGINAL/*.xml
+06-ARCHIVE-ORIGINAL/*.tex
+!06-ARCHIVE-ORIGINAL/README.md
+
+# Build outputs (if generated)
+*.pdf
+dist/
+build/
+
+# Node modules (if web tools added)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Large original archives
+*.zip
+*.tar.gz

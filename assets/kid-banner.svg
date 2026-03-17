@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+  <defs>
+    <!-- Gradient Background -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="50%" style="stop-color:#302b63"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
+    </linearGradient>
+    
+    <!-- Glow Effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Particle Gradient -->
+    <radialGradient id="particleGrad">
+      <stop offset="0%" style="stop-color:#00d4ff"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative Particles (Information Nodes) -->
+  <circle cx="50" cy="30" r="2" fill="url(#particleGrad)" opacity="0.6"/>
+  <circle cx="150" cy="80" r="3" fill="url(#particleGrad)" opacity="0.4"/>
+  <circle cx="700" cy="40" r="2.5" fill="url(#particleGrad)" opacity="0.5"/>
+  <circle cx="650" cy="150" r="2" fill="url(#particleGrad)" opacity="0.6"/>
+  <circle cx="750" cy="120" r="3" fill="url(#particleGrad)" opacity="0.4"/>
+  <circle cx="100" cy="160" r="2" fill="url(#particleGrad)" opacity="0.5"/>
+  
+  <!-- Connection Lines (Information Flow) -->
+  <path d="M 50 30 Q 100 55 150 80" stroke="#00d4ff" stroke-width="0.5" opacity="0.3" fill="none"/>
+  <path d="M 150 80 Q 400 100 650 150" stroke="#00d4ff" stroke-width="0.5" opacity="0.3" fill="none"/>
+  <path d="M 700 40 Q 725 80 750 120" stroke="#00d4ff" stroke-width="0.5" opacity="0.3" fill="none"/>
+  
+  <!-- Left Brain Hemisphere Outline -->
+  <path d="M 100 60 Q 140 50 160 90 Q 170 130 130 150 Q 90 140 80 100 Q 75 70 100 60" 
+        stroke="#00d4ff" stroke-width="2" fill="none" opacity="0.3" filter="url(#glow)"/>
+  
+  <!-- Right Atom/Network Symbol -->
+  <circle cx="720" cy="100" r="25" stroke="#ff6b6b" stroke-width="2" fill="none" opacity="0.3" filter="url(#glow)"/>
+  <ellipse cx="720" cy="100" rx="40" ry="15" fill="none" stroke="#ff6b6b" stroke-width="1" opacity="0.2" transform="rotate(60 720 100)"/>
+  <ellipse cx="720" cy="100" rx="40" ry="15" fill="none" stroke="#ff6b6b" stroke-width="1" opacity="0.2" transform="rotate(-60 720 100)"/>
+  
+  <!-- Central KID Logo -->
+  <text x="400" y="95" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="bold" 
+        text-anchor="middle" fill="#ffffff" filter="url(#glow)">KID</text>
+  
+  <!-- Subtitle -->
+  <text x="400" y="125" font-family="Segoe UI, Arial, sans-serif" font-size="16" 
+        text-anchor="middle" fill="#a0a0a0" letter-spacing="3">
+    KONDENSATION · INFORMATION · DICHTE
+  </text>
+  
+  <!-- Tagline -->
+  <text x="400" y="155" font-family="Segoe UI, Arial, sans-serif" font-size="14" 
+        text-anchor="middle" fill="#00d4ff" font-style="italic" opacity="0.9">
+    An Information-Theoretic Ontology
+  </text>
+  
+  <!-- Bottom Accent Line -->
+  <line x1="300" y1="175" x2="500" y2="175" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+  <circle cx="300" cy="175" r="3" fill="#00d4ff" opacity="0.5"/>
+  <circle cx="500" cy="175" r="3" fill="#00d4ff" opacity="0.5"/>
+  
+  <!-- Version Badge -->
+  <rect x="360" y="12" width="80" height="22" rx="11" fill="#00d4ff" opacity="0.15"/>
+  <text x="400" y="27" font-family="Segoe UI, Arial, sans-serif" font-size="11" 
+        text-anchor="middle" fill="#00d4ff" font-weight="bold">v1.0 HARDENED</text>
+</svg>
