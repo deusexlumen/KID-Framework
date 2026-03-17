@@ -61,6 +61,7 @@
                         id: '01',
                         title: 'Philosophical Foundations',
                         desc: 'Ontologische Basis und dekonstruktive Analyse der Rahmenbedingungen.',
+                        dirPath: '../01-PHILOSOPHICAL-FOUNDATIONS/',
                         files: [
                             { name: 'Ontologische Kondensation', path: '../01-PHILOSOPHICAL-FOUNDATIONS/ontologische_kondensation_synthese.md' },
                             { name: 'Theorie Mapping', path: '../01-PHILOSOPHICAL-FOUNDATIONS/theorie_mapping_philosophie_wissenschaft.md' }
@@ -70,6 +71,7 @@
                         id: '02',
                         title: 'Scientific Formalization',
                         desc: 'Logik-Validierung und theoretische Architekturentwicklung.',
+                        dirPath: '../02-SCIENTIFIC-FORMALIZATION/',
                         files: [
                             { name: 'Theoretical Construct', path: '../02-SCIENTIFIC-FORMALIZATION/THEORETICAL_CONSTRUCT.md' },
                             { name: 'Embodiment Architect Report', path: '../02-SCIENTIFIC-FORMALIZATION/embodiment_architect_report.md' }
@@ -79,6 +81,7 @@
                         id: '03',
                         title: 'Theoretical Integration',
                         desc: 'Axiomatische Fusion und Refactoring der Systemterminologie.',
+                        dirPath: '../03-THEORETICAL-INTEGRATION/',
                         files: [
                             { name: 'Axiomatic Fusion Report', path: '../03-THEORETICAL-INTEGRATION/theory_fusion_axiomatic_report.md' },
                             { name: 'Terminology Refactoring', path: '../03-THEORETICAL-INTEGRATION/terminology_refactoring_summary.md' }
@@ -88,6 +91,7 @@
                         id: '04',
                         title: 'Formalization',
                         desc: 'Der mathematische KID-Calculus (LaTeX/XML) und algorithmische Kern.',
+                        dirPath: '../04-FORMALIZATION/',
                         files: [
                             { name: 'KID Calculus (LaTeX)', path: '../04-FORMALIZATION/KID_Calculus_Formalization.tex' },
                             { name: 'Logic Purge Report', path: '../04-FORMALIZATION/logic_purge_report.xml' }
@@ -97,6 +101,7 @@
                         id: '05',
                         title: 'Critical Analysis',
                         desc: 'Adversarische Audits, Limitationen und Void-Analyse.',
+                        dirPath: '../05-CRITICAL-ANALYSIS/',
                         files: [
                             { name: 'Residual Limitations', path: '../05-CRITICAL-ANALYSIS/RESIDUAL_LIMITATIONS_REPORT.md' },
                             { name: 'The Void Audit', path: '../05-CRITICAL-ANALYSIS/the_void_adversarial_audit_report.xml' }
@@ -150,6 +155,11 @@
             <p class="max-w-3xl mx-auto text-terminal-dim text-lg relative z-10 leading-relaxed mt-6">
                 Ein interdisziplinäres Repository an der Schnittstelle von Philosophie, Ontologie und strikter mathematischer Formalisierung. Konzipiert zur Dekonstruktion temporaler Datenströme.
             </p>
+            <div class="pt-8 flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+                <a href="../README.md" target="_blank" rel="noopener noreferrer" class="bg-terminal-green text-black px-8 py-4 font-bold uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_15px_rgba(0,255,65,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                    System-Readme lesen
+                </a>
+            </div>
         </section>
 
         <!-- Abstract & Core Definition -->
@@ -170,8 +180,8 @@
                 <div class="border border-terminal-dim/30 bg-black/50 p-4 mt-6">
                     <div class="text-xs text-terminal-dim uppercase tracking-widest mb-3 border-b border-terminal-dim/30 pb-2">Meta-Dokumente</div>
                     <div class="flex flex-col gap-2 font-mono text-sm">
-                        <a href="../README.md" class="text-terminal-green hover:text-white transition-colors">> README.md (Initialisierungs-Spezifikation)</a>
-                        <a href="../NAVIGATION.md" class="text-terminal-green hover:text-white transition-colors">> NAVIGATION.md (Topologische Karte)</a>
+                        <a href="../README.md" target="_blank" rel="noopener noreferrer" class="text-terminal-green hover:text-white transition-colors">> README.md (Initialisierungs-Spezifikation)</a>
+                        <a href="../NAVIGATION.md" target="_blank" rel="noopener noreferrer" class="text-terminal-green hover:text-white transition-colors">> NAVIGATION.md (Topologische Karte)</a>
                     </div>
                 </div>
             </div>
@@ -189,11 +199,14 @@
                      x-html="renderMath('K(I,D) = \\int_{t_0}^{t_1} \\frac{\\Delta I_{causal}}{\\rho_{interaction}} dt')">
                 </div>
                 
-                <ul class="mt-6 text-xs text-terminal-dim font-mono space-y-2">
+                <ul class="mt-6 text-xs text-terminal-dim font-mono space-y-2 border-b border-terminal-dim/20 pb-4 mb-4">
                     <li><span class="text-terminal-green font-bold">I</span> = Interaktion (Kausale Delta-Werte)</li>
                     <li><span class="text-terminal-green font-bold">D</span> = Dynamik (System-Varianz)</li>
                     <li><span class="text-terminal-green font-bold">ρ</span> = Interaktionsdichte</li>
                 </ul>
+                <a href="../04-FORMALIZATION/KID_Calculus_Formalization.tex" target="_blank" rel="noopener noreferrer" class="text-xs text-terminal-highlight hover:text-terminal-green transition-colors font-bold uppercase tracking-widest">
+                    [TEX-Dokument öffnen]
+                </a>
             </div>
         </section>
 
@@ -208,9 +221,12 @@
                 <template x-for="mod in modules" :key="mod.id">
                     <div class="border border-terminal-dim/30 bg-[#080808] p-6 hover:border-terminal-green transition-colors duration-300 relative flex flex-col h-full group">
                         
-                        <!-- Header -->
+                        <!-- Header with Directory Link -->
                         <div class="flex justify-between items-start mb-4">
                             <span class="text-2xl font-bold text-terminal-dim opacity-50 group-hover:opacity-100 group-hover:text-terminal-green transition-all" x-text="mod.id"></span>
+                            <a :href="mod.dirPath" target="_blank" rel="noopener noreferrer" class="border border-terminal-dim/50 text-terminal-dim text-[10px] uppercase font-bold px-2 py-1 hover:bg-terminal-green hover:text-black hover:border-terminal-green transition-colors">
+                                /Ordner Öffnen
+                            </a>
                         </div>
                         
                         <h3 class="text-lg font-bold text-white mb-2 tracking-wide uppercase" x-text="mod.title"></h3>
@@ -220,7 +236,7 @@
                         <div class="mt-auto border-t border-terminal-dim/20 pt-4 space-y-2">
                             <div class="text-[10px] uppercase text-terminal-dim/70 tracking-widest mb-2">Zentrale Dokumente:</div>
                             <template x-for="file in mod.files" :key="file.path">
-                                <a :href="file.path" class="file-link block text-xs text-terminal-highlight font-mono truncate">
+                                <a :href="file.path" target="_blank" rel="noopener noreferrer" class="file-link block text-xs text-terminal-highlight font-mono truncate">
                                     > <span x-text="file.name"></span>
                                 </a>
                             </template>
@@ -234,8 +250,11 @@
                     <div class="text-2xl mb-2">📁</div>
                     <h3 class="text-terminal-highlight font-bold uppercase text-sm mb-2">Archiv-Originale</h3>
                     <p class="text-[10px] text-terminal-dim mb-4">Unveränderte Ursprungsdokumente vor dem Refactoring.</p>
-                    <a href="../06-ARCHIVE-ORIGINAL/README.md" class="border border-terminal-dim text-terminal-green text-xs px-4 py-2 hover:bg-terminal-green hover:text-black transition-colors">
+                    <a href="../06-ARCHIVE-ORIGINAL/" target="_blank" rel="noopener noreferrer" class="border border-terminal-dim text-terminal-green text-xs px-4 py-2 hover:bg-terminal-green hover:text-black transition-colors mb-2">
                         /06-ARCHIVE-ORIGINAL/
+                    </a>
+                    <a href="../06-ARCHIVE-ORIGINAL/README.md" target="_blank" rel="noopener noreferrer" class="text-[10px] text-terminal-dim hover:text-white transition-colors font-mono">
+                        > README.md lesen
                     </a>
                 </div>
             </div>
