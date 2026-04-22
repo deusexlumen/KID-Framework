@@ -52,7 +52,8 @@ Where **KID** (bits·s⁻¹·m⁻³) measures information density of condensed s
 | [`03-THEORETICAL-INTEGRATION/`](./03-THEORETICAL-INTEGRATION/) | 6-framework synthesis | 🇬🇧 Mixed |
 | [`04-FORMALIZATION/`](./04-FORMALIZATION/) | Mathematical formalization | 🔢 Universal |
 | [`05-CRITICAL-ANALYSIS/`](./05-CRITICAL-ANALYSIS/) | Known limitations ⚠️ | 🇬🇧 English |
-| [`docs/`](./docs/) | HTML landing page | 🌐 Web |
+| [`06-ARCHIVE-ORIGINAL/`](./06-ARCHIVE-ORIGINAL/) | Original concept papers | 🇩🇪 German |
+| [`07-ASSEMBLY-THEORY-FUSION/`](./07-ASSEMBLY-THEORY-FUSION/) | KID-AT Synthesis (NEW) | 🔬 Scientific |
 
 ### ⚠️ Important Notice
 
