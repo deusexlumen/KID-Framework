@@ -106,6 +106,18 @@
                             { name: 'Residual Limitations', path: '../05-CRITICAL-ANALYSIS/RESIDUAL_LIMITATIONS_REPORT.md' },
                             { name: 'The Void Audit', path: '../05-CRITICAL-ANALYSIS/the_void_adversarial_audit_report.xml' }
                         ]
+                    },
+                    {
+                        id: '07',
+                        title: 'Assembly Theory Fusion',
+                        desc: 'KID-AT Tri-Phase Synthesis: Divergenz → Kollision → Konvergenz. Der Informationskondensationspunkt (ICP) als universeller Fixpunkt.',
+                        dirPath: '../07-ASSEMBLY-THEORY-FUSION/',
+                        files: [
+                            { name: 'Finale Synthese (~11k Wörter)', path: '../07-ASSEMBLY-THEORY-FUSION/KID_AT_Final_Synthesis.md' },
+                            { name: 'Kollision Report', path: '../07-ASSEMBLY-THEORY-FUSION/KID-AT_Collision_Report.md' },
+                            { name: 'Simulation Blueprint (Python)', path: '../07-ASSEMBLY-THEORY-FUSION/SIMULATION/KID_AT_Simulation_Blueprint.py' },
+                            { name: 'Thermodynamische Analyse (LaTeX)', path: '../07-ASSEMBLY-THEORY-FUSION/THERMODYNAMICS/kid_at_thermodynamic_analysis.tex' }
+                        ]
                     }
                 ],
                 renderMath(formula) {
@@ -214,12 +226,15 @@
         <section id="repository" class="space-y-10">
             <div class="border-b border-terminal-dim/30 pb-4">
                 <h2 class="text-3xl font-bold uppercase tracking-widest text-white">Repository Index</h2>
-                <p class="text-terminal-dim mt-2 text-sm">Direktzugriff auf die 5 sequenziellen Entwicklungsphasen des theoretischen Konstrukts.</p>
+                <p class="text-terminal-dim mt-2 text-sm">Direktzugriff auf die 7 sequenziellen Entwicklungsphasen des theoretischen Konstrukts — inklusive der neuen KID-AT Fusion.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <template x-for="mod in modules" :key="mod.id">
                     <div class="border border-terminal-dim/30 bg-[#080808] p-6 hover:border-terminal-green transition-colors duration-300 relative flex flex-col h-full group">
+                        
+                        <!-- NEW Badge -->
+                        <div x-show="mod.id === '07'" class="absolute -top-2 -right-2 bg-terminal-green text-black text-[10px] font-bold px-2 py-0.5 uppercase tracking-widest shadow-[0_0_10px_rgba(0,255,65,0.5)] z-10">Neu</div>
                         
                         <!-- Header with Directory Link -->
                         <div class="flex justify-between items-start mb-4">
