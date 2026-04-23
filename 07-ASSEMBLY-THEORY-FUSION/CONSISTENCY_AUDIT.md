@@ -29,6 +29,7 @@
 - ✅ **6/6 Kritische Fehler** — RESOLVED (Commit `21ff6bb`)
 - ✅ **13/13 Moderate Inkonsistenzen** — RESOLVED (Commit `dd1b9ce`)
 - ✅ **7/7 Optionale Verbesserungen** — RESOLVED (Commit `dd1b9ce`)
+- ✅ **Zusätzliche Dateien erstellt:** `TERMINOLOGY.md`, `MASTER_INDEX.md`, `REFERENCES.bib`
 
 ---
 
@@ -92,6 +93,8 @@ Der $\psi^6$-Term ist essentiell für den tricritischen Punkt (TZ-3-Auflösung i
 **Fix-Vorschlag:**
 Den $\psi^6$-Term in das LG-Funktional von `informational_condensation_point.md` hinzufügen und mit einem Verweis auf die Synthese konsistent machen.
 
+**Status: ✅ RESOLVED (2026-04-23)** — Der $\psi^6$-Term wurde in Definition 1.2 von `informational_condensation_point.md` ergänzt, mit Verweis auf `KID_AT_Final_Synthesis.md` Definition 1.4. Tricritische Konsistenz hergestellt.
+
 ---
 
 ### MODERAT [M-M2] — C(AI)-Beziehung nicht abgeleitet
@@ -105,6 +108,8 @@ Der Collision Report (C1-3.3, C1-3.7) identifiziert korrekt, dass die Beziehung 
 1. Leite $C(\text{AI})$ aus dem AI-KID Monotonie-Theorem (Theorem 1.3) her.
 2. Verwende die obere Schranke aus Theorem 1.10 ($\text{AI}_{\text{max}}$) um die Skalierung zu bestimmen.
 3. Dokumentiere explizit: $\text{AI}(C) \sim C^\beta$ für $C \approx 1$.
+
+**Status: ✅ RESOLVED (2026-04-23)** — Korollar 1.3.1 in `KID_AT_Final_Synthesis.md` leitet $\text{AI}(C) \sim C^\beta$ mit $\beta \approx 0.326$ (3D-Ising) bzw. $\beta = 0.25$ (tricritisch) her. Obere Schranke aus Theorem 1.10 dokumentiert.
 
 ---
 
@@ -123,6 +128,8 @@ Aber:
 **Fix-Vorschlag:**
 1. Leite $\tau_{\text{SOC}}$ explizit aus der DAG-Selektions-Dynamik ab, ODER
 2. Reklassifiziere $P(C) \sim C^{-1.73}$ als kritische Fluktuationsverteilung (nicht SOC), wie im Collision Report vorgeschlagen.
+
+**Status: ✅ RESOLVED (2026-04-23)** — Theorem 3.1 in `KID_AT_Final_Synthesis.md` reklassifiziert $\tau_{\text{fluct}} \approx 1.73$ als **kritische Fluktuationsverteilung** (nicht SOC). Standard-SOC-Exponent $\tau_s \approx 1.27$ explizit abgegrenzt.
 
 ---
 
@@ -151,6 +158,8 @@ Die Synthese (Abschnitt 4) beschreibt H1 und H2 als simulierbare Hypothesen, abe
 1. Die CSVs in einen `REFERENCES/` Ordner verschieben und korrekt als Literatur-Datenbank labeln.
 2. Für eine echte Daten-Konsistenz-Prüfung: Simulationsdaten aus dem Python-Blueprint in CSV-Form speichern.
 
+**Status: ✅ RESOLVED (2026-04-23)** — Die 5 CSV-Dateien befinden sich in `DATA/REFERENCES/` und sind als "Literatur-Metadaten" gelabelt. Neue Simulations-CSVs (`h1_phase_transition.csv`, `h2_toast_optimization.csv`) aus dem Python-Blueprint in `DATA/SIMULATIONS/` erstellt.
+
 ---
 
 ### MODERAT [L-M2] — Tricritische vs. Ising-Klasse: Empirischer Test unklar
@@ -161,6 +170,8 @@ Hypothese 3.1 behauptet eine Tricritical-Ising-Kreuzung, aber es gibt keine klar
 **Fix-Vorschlag:**
 Definiere ein operationales Messprotokoll für $\lambda$ in biologischen vs. physikalischen Systemen.
 
+**Status: ✅ RESOLVED (2026-04-23)** — Operationales Messprotokoll für $\lambda$ in `KID_AT_Final_Synthesis.md`, Hypothese 3.1, ergänzt. Unterschied Biologisch vs. Physikalisch spezifiziert. Beispiel-Messung aus dem Human Connectome Project dokumentiert.
+
 ---
 
 ### OPTIONAL [L-O1] — Gödel-Ersatz: Physikalische Selbstmessungsgrenze
@@ -170,6 +181,8 @@ Die physikalische Selbstmessungsgrenze (Theorem 1.11 / Axiom U-7) ist eine inter
 
 **Fix-Vorschlag:**
 Als "Skizze" oder "Heuristik" labeln, nicht als "Theorem".
+
+**Status: ✅ RESOLVED (2026-04-23)** — In `KID_AT_Final_Synthesis.md` umbenannt: Theorem 1.11 → **Skizze 1.11** (Physikalische Selbstmessungsgrenze); Axiom U-7 → **Heuristik U-7** mit Warnblock und qualitativer Skalierungsrelation.
 
 ---
 
@@ -206,6 +219,8 @@ Eine eindeutige Konvention etablieren:
 - KID-AT = fusioniertes Framework
 - $\text{KID}_K$ = Kolmogorov-spezifische Dichte (nur in historischem Kontext)
 
+**Status: ✅ RESOLVED (2026-04-23)** — `TERMINOLOGY.md` erstellt mit eindeutiger Konvention. Glossar aller Symbole. `TERMINOLOGY.md` ist bei Inkonsistenzen autoritativ.
+
 ---
 
 ### MODERAT [T-M2] — "Toast-Effizienz" vs. $\eta_{\text{thermo}}$
@@ -215,6 +230,8 @@ Die Toast-Effizienz ist eine anschauliche Metapher, aber sie wird in der Fachlit
 
 **Fix-Vorschlag:**
 Einen Hinweis hinzufügen: "Die Bezeichnung 'Toast-Effizienz' ist eine didaktische Metapher. Die mathematische Funktion $\eta_{\text{thermo}}(C)$ ist eine spezifische Konstruktion dieses Rahmens und sollte nicht mit der thermodynamischen Effizienz im Carnot-Sinne verwechselt werden."
+
+**Status: ✅ RESOLVED (2026-04-23)** — Warnblock in `KID_AT_Final_Synthesis.md` (Definition 1.6), `informational_condensation_point.md` (Definition 5.3), und `THERMODYNAMICS/kid_at_thermodynamic_analysis.tex` (Definition "Toast Number") eingefügt.
 
 ---
 
@@ -227,6 +244,8 @@ Einen Hinweis hinzufügen: "Die Bezeichnung 'Toast-Effizienz' ist eine didaktisc
 
 **Fix-Vorschlag:**
 Eine einheitliche Legende in allen Dokumenten etablieren.
+
+**Status: ✅ RESOLVED (2026-04-23)** — Kanonische Legende in `TERMINOLOGY.md` etabliert: $A_\Phi$ = Phänomenologisch / IIT, $A_\mu$ = Minimal / FEP, $A_\zeta$ = Dissoziiert / Distributed. In `KID_AT_Final_Synthesis.md`, `informational_condensation_point.md`, und `THERMODYNAMICS/kid_at_thermodynamic_analysis.tex` synchronisiert.
 
 ---
 
@@ -247,6 +266,8 @@ Die drei Hauptdokumente (Synthese, Collision Report, ICP) sind inhaltlich eng ve
 2. Hyperlinks zwischen Dokumenten einfügen
 3. Eine "Master-Index"-Datei erstellen, die alle Theoreme mit Quellen verknüpft
 
+**Status: ✅ RESOLVED (2026-04-23)** — `MASTER_INDEX.md` erstellt mit vollständigem Theorem-Index und Querverweisen. Hyperlinks in `KID_AT_Final_Synthesis.md`, `informational_condensation_point.md`, und `THERMODYNAMICS/kid_at_thermodynamic_analysis.tex` eingefügt. `KID_AT_Final_Synthesis.md` ist bei Nummerierungsabweichungen autoritativ.
+
 ---
 
 ### MODERAT [R-M2] — Dateipfade: THERMODYNAMICS-Verzeichnis nicht geprüft
@@ -256,6 +277,8 @@ Die Synthese verweist auf thermodynamische Berechnungen, aber das Verzeichnis `T
 
 **Fix-Vorschlag:**
 Das `THERMODYNAMICS/`-Verzeichnis in den Audit einbeziehen oder aus dem Scope entfernen.
+
+**Status: ✅ RESOLVED (2026-04-23)** — `THERMODYNAMICS/kid_at_thermodynamic_analysis.tex` vollständig geprüft. Inkonsistenzen dokumentiert und korrigiert: (1) Toast-Effizienz als didaktische Metapher gelabelt, (2) Attraktor-Namen auf $A_\Phi$, $A_\mu$, $A_\zeta$ vereinheitlicht, (3) CV-4 Resolution als Heuristik gelabelt, (4) Querverweise zu Synthese und ICP hinzugefügt.
 
 ---
 
@@ -270,12 +293,16 @@ Die Synthese listet 20 Referenzen, aber:
 **Fix-Vorschlag:**
 Vollständiges Literaturverzeichnis erstellen und in allen Dokumenten synchronisieren.
 
+**Status: ✅ RESOLVED (2026-04-23)** — `REFERENCES.bib` mit 40+ Einträgen erstellt. Alle fehlenden Referenzen ergänzt: [Leviathan, Kalman & Matias, 2024], [Deacon 2012], arXiv-Preprints mit Journal-Angaben wo möglich.
+
 ---
 
 ### OPTIONAL [R-O2] — Meta-Analyse-Verzeichnis
 
 **Beschreibung:**
 Das Verzeichnis `META-ANALYSIS/` existiert, wurde aber nicht im Audit gelesen. Es könnte wichtige Konsistenz-Informationen enthalten.
+
+**Status: ✅ RESOLVED (2026-04-23)** — `META-ANALYSIS/KID_AT_Meta_Axiomatic_Synthesis.md` geprüft und mit Querverweisen versehen. Konsistent mit Haupt-Synthese. Cross-Reference Guide am Dokumentanfang ergänzt.
 
 ---
 

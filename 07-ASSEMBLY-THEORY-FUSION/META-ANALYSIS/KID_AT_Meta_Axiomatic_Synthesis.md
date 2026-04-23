@@ -9,6 +9,12 @@
 
 This document presents the foundational meta-axiomatic synthesis for integrating Kondensation-Information-Dichte (KID) with Assembly Theory (AT). We map the complete axiom space of both frameworks, identify and resolve five critical contradiction points, establish the Kolmogorov-complexity resolution of the observer-dependence problem (CV-3), and design the architecture for a unified theorem. The synthesis yields two concrete, mathematically precise falsifiable hypotheses with accompanying simulation blueprints. All constructions are grounded in the 2020-2026 literature context, with explicit attention to Cronin et al. (Nature, 2023), Chen & Prokopenko (2025), and the IIT 4.0 formalism.
 
+> **Cross-Reference Guide:** This meta-synthesis references the following canonical KID-AT documents:
+> - **`KID_AT_Final_Synthesis.md`** — Master synthesis with unified theorems, definitions, and axioms (Authoritative for numbering)
+> - **`informational_condensation_point.md`** — ICP formalism with Landau-Ginzburg field theory and emergence thresholds (Authoritative for critical phenomena)
+> - **`THERMODYNAMICS/kid_at_thermodynamic_analysis.tex`** — Thermodynamic derivation of Toast Number, entropy export, and FEP integration
+> - **`TERMINOLOGY.md`** — Unified glossary, symbol conventions, and KID vs. KID-AT distinction
+
 ---
 
 ## Table of Contents
@@ -28,10 +34,10 @@ This document presents the foundational meta-axiomatic synthesis for integrating
 
 | Axiom ID | Statement | Formal Expression |
 |----------|-----------|-------------------|
-| **K-1** | Information condensation is a measure of causal integration over a system boundary | $KID = \oint_{\partial\Omega} I_{causal}/V_{interaction} \, dt$ |
-| **K-2** | Critical condensation depends on temperature, correlation length, and correlation time | $KID_{crit}(T) = k_B T \ln 2 / (\xi^d \cdot \tau_{cor})$ |
-| **K-3** | Phase transition occurs when condensation exceeds critical value | $C = KID / KID_{crit} > 1 \implies \text{emergence}$ |
-| **K-4** | Toast-optimality principle: systems optimize at $T = 1 \pm \delta$ | $\mathcal{T}(x) = KID(x)/KID_{max} \cdot \tau_{age}/\tau_{relax}$ |
+| **K-1** | Information condensation is a measure of causal integration over a system boundary | $KID = \oint_{\partial\Omega} I_{causal}/V_{interaction} \, dt$ | Def. 0.1 (ICP), Def. 1.2 (Synthesis) |
+| **K-2** | Critical condensation depends on temperature, correlation length, and correlation time | $KID_{crit}(T) = k_B T \ln 2 / (\xi^d \cdot \tau_{cor})$ | Def. 1.2 (Synthesis) |
+| **K-3** | Phase transition occurs when condensation exceeds critical value | $C = KID / KID_{crit} > 1 \implies \text{emergence}$ | Def. 1.4 (Synthesis), Thm. 2.1 (ICP) |
+| **K-4** | Toast-optimality principle: systems optimize at $T = 1 \pm \delta$ | $\mathcal{T}(x) = KID(x)/KID_{max} \cdot \tau_{age}/\tau_{relax}$ | Def. 1.6 (Synthesis), Def. 5.3 (ICP) |
 | **K-5** | Emergence is quantized by level with calculable thresholds | $E_n = n \cdot KID_{crit} \cdot \ln(AI_{min}^{(n)})$ |
 | **K-6** | Causal information requires an interpreter (CV-3 constraint) | $I_{causal}$ is observer-relative without $K(x)$ anchor |
 | **K-7** | Self-measurement has physical limits (CV-4 constraint) | $\exists \, L_{self} > 0 : KID_{self}(S) \leq L_{self}$ |
@@ -81,13 +87,13 @@ Contradictory Pairs (require resolution):
 
 | Axiom ID | Unified Statement | Origin |
 |----------|-------------------|--------|
-| **U-1** | Systems are defined by their algorithmic construction histories | A-1 + K-6 resolution |
-| **U-2** | Complexity is the product of path-dependence and causal condensation | K-1 + A-2 + U-1 |
-| **U-3** | Emergence occurs when $C = KID/KID_{crit} > 1$ with discrete AI thresholds | K-3 + A-6 |
-| **U-4** | Selection is measurable via slower-than-exponential growth in assembly contingent | A-5 + K-2 |
-| **U-5** | The Toast-optimal regime $\mathcal{T} \approx 1$ corresponds to $\tau_d \approx \tau_p$ | K-4 + A-4 |
-| **U-6** | Kolmogorov complexity $K(x)$ is the fundamental, observer-independent measure | K-6 (resolved) |
-| **U-7** | Self-measurement limits replace Gödel incompleteness as the fundamental bound | K-7 (CV-4 resolution) |
+| **U-1** | Systems are defined by their algorithmic construction histories | A-1 + K-6 resolution | Axiom U-1 (Synthesis) |
+| **U-2** | Complexity is the product of path-dependence and causal condensation | K-1 + A-2 + U-1 | Axiom U-2 (Synthesis) |
+| **U-3** | Emergence occurs when $C = KID/KID_{crit} > 1$ with discrete AI thresholds | K-3 + A-6 | Axiom U-3 (Synthesis), Thm. 2.1 (ICP) |
+| **U-4** | Selection is measurable via slower-than-exponential growth in assembly contingent | A-5 + K-2 | Axiom U-4 (Synthesis) |
+| **U-5** | The Toast-optimal regime $\mathcal{T} \approx 1$ corresponds to $\tau_d \approx \tau_p$ | K-4 + A-4 | Axiom U-5 (Synthesis), Def. 1.6 (Synthesis) |
+| **U-6** | Kolmogorov complexity $K(x)$ is the fundamental, observer-independent measure | K-6 (resolved) | Axiom U-6 (Synthesis), Def. 1.1 (Synthesis) |
+| **U-7** | Self-measurement limits replace Gödel incompleteness as the fundamental bound | K-7 (CV-4 resolution) | Axiom U-7 (Synthesis) — **Heuristic** |
 
 ---
 
@@ -548,3 +554,19 @@ $$\text{Pointer states} \Longleftrightarrow \text{Internal}(MB)$$
 
 *End of Phase A: DIVERGENZ Report — Cluster 3: Meta-Axiomatic Synthesizers*
 *Ready for Phase B: RESONANZ (convergence and integration)*
+
+---
+
+## Cross-Reference Summary
+
+This meta-synthesis is cross-linked with the canonical KID-AT documents as follows:
+
+- **Axioms K-1–K-4** → `KID_AT_Final_Synthesis.md`, Definitions 1.2, 1.4, 1.6; Axioms U-1–U-5
+- **Axiom U-6 (Kolmogorov)** → `KID_AT_Final_Synthesis.md`, Definition 1.1; `informational_condensation_point.md`, Definition 0.1
+- **Axiom U-7 (Self-measurement)** → `KID_AT_Final_Synthesis.md`, Axiom U-7 — **Heuristic**; `THERMODYNAMICS/kid_at_thermodynamic_analysis.tex`, Lemma 7.5
+- **Bridge Theorems BT1–BT3, BT8** → `KID_AT_Final_Synthesis.md`, Theorem 2.1; `informational_condensation_point.md`, Theorems 2.1–2.6
+- **Toast-optimality** → `KID_AT_Final_Synthesis.md`, Definition 1.6; `informational_condensation_point.md`, Definition 5.3; `THERMODYNAMICS/kid_at_thermodynamic_analysis.tex`, Definition "Toast Number"
+- **Critical exponents** → `KID_AT_Final_Synthesis.md`, Theorems 1.1–1.3; `informational_condensation_point.md`, Section 5
+- **Simulation blueprints** → `SIMULATION/KID_AT_Simulation_Blueprint.py`
+- **Unified terminology** → `TERMINOLOGY.md` (Authoritative for symbol conventions)
+- **Complete theorem index** → `MASTER_INDEX.md`
