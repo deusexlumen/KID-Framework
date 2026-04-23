@@ -26,15 +26,39 @@ from scipy.signal import find_peaks
 
 
 # ============================================================================
+# TOAST EFFICIENCY
+# ============================================================================
+
+def compute_toast_efficiency(c_parameter: float) -> float:
+    """
+    Compute the TOAST efficiency η_toast(C).
+    
+    The TOAST heuristic efficiency is maximized at C = 1 (critical point)
+    and falls off symmetrically for C < 1 and C > 1.
+    
+    Formula: η_toast(C) = 4C / (1 + C)^2
+    
+    Properties:
+    - η_toast(0) = 0
+    - η_toast(1) = 1  (maximum)
+    - η_toast(C) → 0 as C → ∞
+    - Symmetry: η_toast(C) = η_toast(1/C)
+    """
+    return 4.0 * c_parameter / (1.0 + c_parameter) ** 2
+
+
+# ============================================================================
 # UTILITY CLASSES AND DATA STRUCTURES
 # ============================================================================
 
 class PhaseLevel(Enum):
     """Emergence levels as defined in the unified framework."""
-    PHYSICAL = 1      # AI_min = 1
-    CHEMICAL = 2      # AI_min = 10
-    BIOLOGICAL = 3    # AI_min = 100
-    CONSCIOUSNESS = 4 # AI_min = 10000
+    PHYSICAL = 1       # AI_min = 1
+    CHEMICAL = 2       # AI_min = 10
+    BIOLOGICAL = 3     # AI_min = 100
+    NEURAL = 4         # AI_min = 1000
+    CONSCIOUSNESS = 5  # AI_min = 10000
+    COLLECTIVE = 6     # AI_min = 100000
 
 
 @dataclass
@@ -61,6 +85,7 @@ class SimulationState:
     max_ai: int
     ai_distribution: Dict[int, int]  # AI value -> count of objects
     entropy_production: float
+    eta_toast: float = 0.0  # Toast efficiency
 
 
 # ============================================================================
@@ -83,12 +108,14 @@ class AssemblyPhaseTransitionSimulator:
       3. Detect phase transitions in dKID_K/dt
     """
     
-    # Emergence thresholds from unified framework
+    # Emergence thresholds from unified framework (6 levels)
     AI_THRESHOLDS = {
         PhaseLevel.PHYSICAL: 1,
         PhaseLevel.CHEMICAL: 10,
         PhaseLevel.BIOLOGICAL: 100,
+        PhaseLevel.NEURAL: 1000,
         PhaseLevel.CONSCIOUSNESS: 10000,
+        PhaseLevel.COLLECTIVE: 100000,
     }
     
     def __init__(
@@ -247,7 +274,8 @@ class AssemblyPhaseTransitionSimulator:
             mean_ai=mean_ai,
             max_ai=max_ai,
             ai_distribution=dict(ai_dist),
-            entropy_production=0.0  # Would be computed from detailed balance
+            entropy_production=0.0,  # Would be computed from detailed balance
+            eta_toast=compute_toast_efficiency(kid_k / self.KID_K_crit)
         )
         self.history.append(state)
     
@@ -299,13 +327,13 @@ class AssemblyPhaseTransitionSimulator:
             t_transition = times[peak_idx]
             ai_at_transition = max_ai_values[peak_idx]
             
-            # Determine level
-            level = None
+            # Determine level — find highest threshold that ai_at_transition meets or exceeds
+            level = PhaseLevel.PHYSICAL
             for pl, threshold in self.AI_THRESHOLDS.items():
                 if ai_at_transition >= threshold:
                     level = pl
             
-            if level and level != PhaseLevel.PHYSICAL:
+            if level != PhaseLevel.PHYSICAL:
                 transitions.append((int(t_transition), level))
         
         self.transitions_detected = transitions
@@ -335,7 +363,14 @@ class AssemblyPhaseTransitionSimulator:
         # Criterion 4: In Toast-optimal regime (tau_d ≈ tau_p)
         criteria["toast_optimal"] = 0.5 <= self.tau_d / self.tau_p <= 2.0
         
-        # Criterion 5: Selection matters (alpha < 1)
+        # Criterion 5: Toast efficiency is non-negligible at some point
+        if self.history:
+            eta_toast_values = [compute_toast_efficiency(s.c_parameter) for s in self.history]
+            criteria["toast_efficiency_max"] = max(eta_toast_values) > 0.5
+        else:
+            criteria["toast_efficiency_max"] = False
+        
+        # Criterion 6: Selection matters (alpha < 1)
         criteria["selection_active"] = self.alpha < 1.0
         
         criteria["all_pass"] = all(criteria.values())
@@ -471,6 +506,7 @@ class EntropyExportOptimizer:
     def _record_state(self, t: int, I_predict: float, W_cost: float):
         """Record simulation state."""
         kid_k = self._compute_kid_k(I_predict)
+        c_param = kid_k / self.KID_K_crit
         
         # Compute magnetization (order parameter)
         M = np.abs(np.mean(self.spins))
@@ -482,13 +518,17 @@ class EntropyExportOptimizer:
             correlations.append(corr)
         xi = sum(corr > 0.1 for corr in correlations) if correlations else 0
         
+        # Compute TOAST efficiency
+        eta_toast = compute_toast_efficiency(c_param)
+        
         state = {
             't': t,
             'kid_k': kid_k,
-            'c_parameter': kid_k / self.KID_K_crit,
+            'c_parameter': c_param,
             'I_predict': I_predict,
             'W_cost': W_cost,
             'eta_thermo': I_predict / W_cost if W_cost > 0 else 0,
+            'eta_toast': eta_toast,
             'magnetization': M,
             'correlation_length': xi,
             'energy': self._energy(),
@@ -546,6 +586,10 @@ class EntropyExportOptimizer:
         
         # Criterion 5: C stays bounded (doesn't diverge)
         criteria["c_bounded"] = np.max(c_values) < 10.0
+        
+        # Criterion 6: TOAST efficiency is maximized near C ≈ 1
+        eta_toast_values = np.array([s['eta_toast'] for s in self.history])
+        criteria["toast_peak_near_critical"] = np.max(eta_toast_values) > 0.8
         
         criteria["all_pass"] = all(criteria.values())
         return criteria

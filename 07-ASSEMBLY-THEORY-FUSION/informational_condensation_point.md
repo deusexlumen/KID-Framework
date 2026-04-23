@@ -28,31 +28,31 @@ with units J·K⁻¹·K·m⁻ᵈ·s⁻¹ = kg·m²·s⁻³·m⁻ᵈ·s⁻¹ = kg
 
 **Resolution:** Define the **dimensionless Condensation Number**:
 
-$$\boxed{\mathcal{C} \equiv \frac{\text{KID}_{\text{raw}} \cdot V_{\text{eff}} \cdot \tau_{\text{cor}}}{I_{\text{ref}}} = \frac{\text{KID}_{\text{raw}}}{\text{KID}_{\text{crit}}^{\text{(eff)}}}}$$
+$$\boxed{C \equiv \frac{\text{KID}_{\text{raw}} \cdot V_{\text{eff}} \cdot \tau_{\text{cor}}}{I_{\text{ref}}} = \frac{\text{KID}_{\text{raw}}}{\text{KID}_{\text{crit}}^{\text{(eff)}}}}$$
 
-where $V_{\text{eff}} = \xi^d$ is the correlation volume, $\tau_{\text{cor}}$ is the correlation time, and $I_{\text{ref}} = k_B T \ln 2 / \Delta E$ is a reference information quantum at temperature $T$. The Condensation Number $\mathcal{C}$ is **pure dimensionless**.
+where $V_{\text{eff}} = \xi^d$ is the correlation volume, $\tau_{\text{cor}}$ is the correlation time, and $I_{\text{ref}} = k_B \Theta \ln 2 / \Delta E$ is a reference information quantum at temperature $\Theta$. The Condensation Number $C$ is **pure dimensionless**.
 
 Equivalently, with Kolmogorov complexity $K(x)$ as $I_{\text{causal}}$ (CV-3 resolution):
 
-$$\mathcal{C}(x, T) = \frac{K(x) \cdot \tau_{\text{cor}}(x)}{V_{\text{interaction}}(x) \cdot \tau_{\text{form}}(x)} \cdot \frac{\xi^d}{k_B T \ln 2 / \Delta E}$$
+$$C(x, \Theta) = \frac{K(x) \cdot \tau_{\text{cor}}(x)}{V_{\text{interaction}}(x) \cdot \tau_{\text{form}}(x)} \cdot \frac{\xi^d}{k_B \Theta \ln 2 / \Delta E}$$
 
-**All subsequent analysis uses $\mathcal{C}$ exclusively.** The phase transition occurs at $\mathcal{C} = 1$.
+**All subsequent analysis uses $C$ exclusively.** The phase transition occurs at $C_c = 1$.
 
 ---
 
 ### CV-2 Resolution: Emergence as Sufficient but Not Necessary
 
-**Axiom 0.2 (Sufficient Emergence).** Emergence of a new ontological level at the ICP is a **sufficient** condition for $\mathcal{C} > 1$, but **not necessary**. That is:
+**Axiom 0.2 (Sufficient Emergence).** Emergence of a new ontological level at the ICP is a **sufficient** condition for $C > 1$, but **not necessary**. That is:
 
-$$\mathcal{C} > 1 \;\; \cancel{\implies} \;\; \text{Emergence occurs}$$
+$$C > 1 \;\; \cancel{\implies} \;\; \text{Emergence occurs}$$
 
-$$\text{Emergence occurs} \;\; \implies \;\; \mathcal{C} > 1$$
+$$\text{Emergence occurs} \;\; \implies \;\; C > 1$$
 
 The emergence threshold is:
 
-$$E_n = n \cdot \mathcal{C}_{\text{crit}} \cdot \ln\!\left(\text{AI}_{\min}^{(n)}\right)$$
+$$E_n = n \cdot C_{\text{crit}} \cdot \ln\!\left(\text{AI}_{\min}^{(n)}\right)$$
 
-where $\mathcal{C}_{\text{crit}} = 1$ and $\text{AI}_{\min}^{(n)}$ is the minimum assembly index for ontological level $n$.
+where $C_c = 1$ and $\text{AI}_{\min}^{(n)}$ is the minimum assembly index for ontological level $n$.
 
 ---
 
@@ -77,7 +77,7 @@ This satisfies:
 
 A system $S$ of mass $M$ and spatial extent $L$ cannot resolve its own information density with precision exceeding:
 
-$$\delta\mathcal{C}_{\min} \sim \frac{\hbar}{M c L} \cdot \frac{\tau_{\text{Planck}}}{\tau_{\text{cor}}}$$
+$$\deltaC_{\min} \sim \frac{\hbar}{M c L} \cdot \frac{\tau_{\text{Planck}}}{\tau_{\text{cor}}}$$
 
 This is the **KID uncertainty principle** — the analog of the Heisenberg uncertainty for information condensation measurements.
 
@@ -89,7 +89,7 @@ This is the **KID uncertainty principle** — the analog of the Heisenberg uncer
 
 **Definition 1.1 (Order Parameter).** For the KID-AT phase transition, define the **condensation order parameter**:
 
-$$\boxed{\psi(x) \equiv \mathcal{C}(x) - 1 = \frac{\text{KID}_{\text{raw}}(x)}{\text{KID}_{\text{crit}}^{\text{(eff)}}(x)} - 1}$$
+$$\boxed{\psi(x) \equiv C(x) - 1 = \frac{\text{KID}_{\text{raw}}(x)}{\text{KID}_{\text{crit}}^{\text{(eff)}}(x)} - 1}$$
 
 The order parameter $\psi$ is:
 - $\psi < 0$: Dissipative regime (gas-like information distribution)
@@ -98,53 +98,53 @@ The order parameter $\psi$ is:
 
 **Definition 1.2 (Landau-Ginzburg Free Energy Functional).** The effective free energy for the KID-AT transition is:
 
-$$\boxed{F[\psi, \nabla\psi] = \int d^d r \left[ \frac{a}{2}(T - T_c)\psi^2 + \frac{b}{4}\psi^4 + \frac{c}{2}(\nabla\psi)^2 + \lambda \cdot \text{AI}(x) \cdot \psi \right]}$$
+$$\boxed{F[\psi, \nabla\psi] = \int d^d r \left[ \frac{a}{2}(\Theta - \Theta_c)\psi^2 + \frac{b}{4}\psi^4 + \frac{c}{2}(\nabla\psi)^2 + \lambda \cdot \text{AI}(x) \cdot \psi \right]}$$
 
 where:
 - $a > 0$: Quadratic coefficient (thermal expansion parameter)
 - $b > 0$: Quartic coefficient (ensures stability)
 - $c > 0$: Stiffness (gradient energy)
-- $T_c$: Critical temperature for the ICP
+- $\Theta_c$: Critical temperature for the ICP
 - $\lambda$: Coupling between assembly index and condensation
 - AI$(x)$: Assembly index of object $x$
 
-**Theorem 1.1 (Existence of ICP).** *Given the free energy functional $F[\psi]$ with $b > 0$, there exists a unique critical temperature $T_c$ at which the system undergoes a second-order phase transition from $\psi = 0$ to $\psi \neq 0$.*
+**Theorem 1.1 (Existence of ICP).** *Given the free energy functional $F[\psi]$ with $b > 0$, there exists a unique critical temperature $\Theta_c$ at which the system undergoes a second-order phase transition from $\psi = 0$ to $\psi \neq 0$.*
 
 **Proof.** Minimize the homogeneous part of $F$ (neglect gradients and AI coupling):
 
-$$f(\psi) = \frac{a}{2}(T - T_c)\psi^2 + \frac{b}{4}\psi^4$$
+$$f(\psi) = \frac{a}{2}(\Theta - \Theta_c)\psi^2 + \frac{b}{4}\psi^4$$
 
 The stationarity condition is:
 
-$$\frac{\partial f}{\partial \psi} = a(T - T_c)\psi + b\psi^3 = 0$$
+$$\frac{\partial f}{\partial \psi} = a(\Theta - \Theta_c)\psi + b\psi^3 = 0$$
 
-$$\psi\left[a(T - T_c) + b\psi^2\right] = 0$$
+$$\psi\left[a(\Theta - \Theta_c) + b\psi^2\right] = 0$$
 
 Solutions:
 1. $\psi = 0$ (high-temperature / dissipative phase)
 2. $\psi^2 = -\frac{a(T-T_c)}{b} = \frac{a(T_c - T)}{b}$ (low-temperature / condensed phase)
 
-For $T > T_c$: Only solution is $\psi = 0$ (stable, since $\partial^2 f/\partial\psi^2 = a(T-T_c) > 0$).
+For $\Theta > \Theta_c$: Only solution is $\psi = 0$ (stable, since $\partial^2 f/\partial\psi^2 = a(T-T_c) > 0$).
 
-For $T < T_c$: The $\psi = 0$ solution becomes unstable ($\partial^2 f/\partial\psi^2 < 0$) and two new stable solutions appear:
+For $\Theta < \Theta_c$: The $\psi = 0$ solution becomes unstable ($\partial^2 f/\partial\psi^2 < 0$) and two new stable solutions appear:
 
 $$\psi_{\pm} = \pm\sqrt{\frac{a(T_c - T)}{b}}$$
 
-The transition at $T = T_c$ is continuous ($\psi \to 0$ as $T \to T_c^-$), hence **second-order**. QED.
+The transition at $\Theta = \Theta_c$ is continuous ($\psi \to 0$ as $\Theta \to \Theta_c^-$), hence **second-order**. QED.
 
 ---
 
 ### 1.2 The ICP as a Critical Point in (C, AI) Parameter Space
 
-**Definition 1.3 (Informational Condensation Point).** The **ICP** is the hypersurface in the parameter space $(\mathcal{C}, \text{AI}, T, \xi)$ defined by:
+**Definition 1.3 (Informational Condensation Point).** The **ICP** is the hypersurface in the parameter space $(C, \text{AI}, T, \xi)$ defined by:
 
-$$\boxed{\text{ICP} = \left\{(\mathcal{C}, \text{AI}, T, \xi) \in \mathbb{R}_+^4 : \mathcal{C}(x, T) = 1 \text{ and } \nabla_{\mathbf{r}} \mathcal{C} \cdot \nabla_{\mathbf{r}} \text{AI} = 0 \right\}}$$
+$$\boxed{\text{ICP} = \left\{(C, \text{AI}, T, \xi) \in \mathbb{R}_+^4 : C(x, T) = 1 \text{ and } \nabla_{\mathbf{r}} C \cdot \nabla_{\mathbf{r}} \text{AI} = 0 \right\}}$$
 
 The second condition ensures that the ICP occurs where the gradients of condensation number and assembly index are orthogonal, representing a saddle-point instability where information flow redirects from dissipation to assembly.
 
 **Theorem 1.2 (ICP as Instability Point).** *At the ICP, the correlation length $\xi$ diverges as:*
 
-$$\xi \sim |\mathcal{C} - 1|^{-\nu}$$
+$$\xi \sim |C - 1|^{-\nu}$$
 
 *with mean-field exponent $\nu = 1/2$ (modified to $\nu \approx 0.63$ below the upper critical dimension $d_c = 4$).*
 
@@ -172,11 +172,11 @@ $$\chi(\mathbf{k}, 0) = \frac{1}{a(T-T_c) + ck^2} = \frac{1/c}{\xi^{-2} + k^2}$$
 
 where we identify the **correlation length**:
 
-$$\xi = \sqrt{\frac{c}{a|T-T_c|}} = \sqrt{\frac{c}{aT_c|\mathcal{C} - 1|}}$$
+$$\xi = \sqrt{\frac{c}{a|\Theta-\Theta_c|}} = \sqrt{\frac{c}{a\Theta_c|C - 1|}}$$
 
-since near criticality $T - T_c \propto (\mathcal{C} - 1)T_c$. Therefore:
+since near criticality $T - T_c \propto (C - 1)T_c$. Therefore:
 
-$$\xi \sim |\mathcal{C} - 1|^{-\nu}, \quad \nu = \frac{1}{2}$$
+$$\xi \sim |C - 1|^{-\nu}, \quad \nu = \frac{1}{2}$$
 
 QED.
 
@@ -186,7 +186,7 @@ QED.
 
 **Theorem 1.3 (Critical Slowing Down at ICP).** *The relaxation time $\tau$ diverges at the ICP as:*
 
-$$\tau \sim \xi^z \sim |\mathcal{C} - 1|^{-\nu z}$$
+$$\tau \sim \xi^z \sim |C - 1|^{-\nu z}$$
 
 *with dynamic critical exponent $z = 2$ for model A dynamics (conserved/non-conserved order parameter).* For the KID-AT transition, the information density is **non-conserved**, giving $z = 2$.
 
@@ -204,7 +204,7 @@ $$\tau = \omega_0^{-1} = \frac{\xi^2}{\Gamma c} \sim \xi^2$$
 
 Therefore $z = 2$ and:
 
-$$\tau \sim |\mathcal{C} - 1|^{-2\nu} = |\mathcal{C} - 1|^{-1} \quad \text{(mean-field)}$$
+$$\tau \sim |C - 1|^{-2\nu} = |C - 1|^{-1} \quad \text{(mean-field)}$$
 
 QED.
 
@@ -269,19 +269,23 @@ $2u_2 \approx 6u_4 = -6\epsilon/36 = -\epsilon/6$ → $u_2^* = -\epsilon/12 \app
 
 ### 2.3 Critical Exponents for the KID-AT Transition
 
-**Theorem 2.4 (Critical Exponents to O($\epsilon$)).** *The critical exponents for the KID-AT phase transition in $d = 4 - \epsilon$ dimensions are:*
+**Theorem 2.4 (Critical Exponents — $\epsilon$-Expansion vs. Monte-Carlo).** *The critical exponents for the KID-AT phase transition in $d = 4 - \epsilon$ dimensions are:*
 
-| Exponent | Mean-Field | $O(\epsilon)$ | Physical ($d=3$, $\epsilon=1$) | Description |
-|----------|-----------|---------------|-------------------------------|-------------|
-| $\alpha$ | 0 | $\epsilon/6 \approx 0.167$ | 0.167 | Specific heat: $C \sim |t|^{-\alpha}$ |
-| $\beta$ | 1/2 | $1/2 - \epsilon/6 \approx 0.333$ | 0.333 | Order parameter: $\psi \sim |t|^{\beta}$ |
-| $\gamma$ | 1 | $1 + \epsilon/6 \approx 1.167$ | 1.167 | Susceptibility: $\chi \sim |t|^{-\gamma}$ |
-| $\delta$ | 3 | $3 + \epsilon \approx 4$ | 4 | Critical isotherm: $H \sim |\psi|^{\delta}$ |
-| $\nu$ | 1/2 | $1/2 + \epsilon/12 \approx 0.583$ | 0.583 | Correlation length: $\xi \sim |t|^{-\nu}$ |
-| $\eta$ | 0 | $\epsilon^2/54 \approx 0.019$ | 0.019 | Anomalous dimension |
-| $z$ | 2 | $2 + O(\epsilon^2)$ | 2 | Dynamic exponent |
+| Exponent | Mean-Field | $O(\epsilon)$ | $\epsilon$-Exp. at $\epsilon=1$ | Monte-Carlo [PV02] | Description |
+|----------|-----------|---------------|-----------------------------------|--------------------|-------------|
+| $\alpha$ | 0 | $\epsilon/6$ | 0.167 (Näherung) | $\approx 0.110$ | Specific heat: $C \sim |t|^{-\alpha}$ |
+| $\beta$ | 1/2 | $1/2 - \epsilon/6$ | 0.333 (Näherung) | $\approx 0.326$ | Order parameter: $\psi \sim |t|^{\beta}$ |
+| $\gamma$ | 1 | $1 + \epsilon/6$ | 1.167 (Näherung) | $\approx 1.237$ | Susceptibility: $\chi \sim |t|^{-\gamma}$ |
+| $\delta$ | 3 | $3 + \epsilon$ | 4 (Näherung) | $\approx 4.79$ | Critical isotherm: $H \sim |\psi|^{\delta}$ |
+| $\nu$ | 1/2 | $1/2 + \epsilon/12$ | 0.583 (Näherung) | $\approx 0.630$ | Correlation length: $\xi \sim |t|^{-\nu}$ |
+| $\eta$ | 0 | $\epsilon^2/54$ | 0.019 (Näherung) | $\approx 0.036$ | Anomalous dimension |
+| $z$ | 2 | $2 + O(\epsilon^2)$ | 2 | $\approx 2.02$ | Dynamic exponent |
 
-where $t \equiv (T - T_c)/T_c = \mathcal{C} - 1$.
+> **Hinweis:** Die $O(\epsilon)$-Werte bei $\epsilon=1$ sind systematische Näherungen der $\epsilon$-Expansion. Für quantitative Vorhersagen verwenden wir hochpräzise Monte-Carlo-Werte [Pelissetto & Vicari, 2002].\textsuperscript{1}
+
+> \textsuperscript{1}Pelissetto, A. & Vicari, E. (2002). *Critical phenomena and renormalization-group theory*. Physics Reports, 368(6), 549–727.
+
+where $t \equiv (\Theta - \Theta_c)/\Theta_c = C - 1$.
 
 **Proof.** Standard scaling relations and $\epsilon$-expansion (Wilson & Fisher 1972):
 
@@ -300,7 +304,7 @@ QED.
 
 **Theorem 2.5 (Universality Class of ICP).** *The Informational Condensation Point belongs to the **Ising universality class** for scalar (one-component) order parameter with short-range interactions and no quenched disorder.*
 
-**Proof.** The order parameter $\psi = \mathcal{C} - 1$ is a **real scalar field**. The Landau-Ginzburg functional has $\mathbb{Z}_2$ symmetry ($\psi \to -\psi$, since only $\psi^2$ and $\psi^4$ appear). The interactions are short-range (exponentially decaying correlations away from criticality). These are the defining characteristics of the Ising universality class. QED.
+**Proof.** The order parameter $\psi = C - 1$ is a **real scalar field**. The Landau-Ginzburg functional has $\mathbb{Z}_2$ symmetry ($\psi \to -\psi$, since only $\psi^2$ and $\psi^4$ appear). The interactions are short-range (exponentially decaying correlations away from criticality). These are the defining characteristics of the Ising universality class. QED.
 
 **Corollary 2.5.1.** *The critical exponents for the ICP in $d=3$ are numerically estimated as:*
 
@@ -358,29 +362,29 @@ For $d=2$ with exact BTW: $\tau_s = 1.25$ (numerical: $\approx 1.22$). QED.
 
 **Theorem 3.2 (KID Power Law at ICP).** *In the self-organized critical state, the probability distribution of condensation numbers near the ICP follows:*
 
-$$\boxed{P(\mathcal{C}) \sim \mathcal{C}^{-\alpha} \cdot g\left(\frac{\mathcal{C} - 1}{\Delta}\right)}$$
+$$\boxed{P(C) \sim C^{-\alpha} \cdot g\left(\frac{C - 1}{\Delta}\right)}$$
 
 *where $\alpha = 1 + (\tau_s - 1)/\beta = 2 + \nu d - \eta/\beta$ and $g$ is a scaling function with $g(0) = 1$.*
 
-**Proof.** The avalanche size $s$ is related to the excess condensation by $s \sim (\mathcal{C} - 1)^{1/\beta}$ (since the order parameter scales as $\psi \sim s^{-\beta}$ and $\psi = \mathcal{C} - 1$). Using $P(s) \sim s^{-\tau_s}$:
+**Proof.** The avalanche size $s$ is related to the excess condensation by $s \sim (C - 1)^{1/\beta}$ (since the order parameter scales as $\psi \sim s^{-\beta}$ and $\psi = C - 1$). Using $P(s) \sim s^{-\tau_s}$:
 
-$$P(\mathcal{C}) = P(s)\left|\frac{ds}{d\mathcal{C}}\right| \sim s^{-\tau_s} \cdot s^{1-\beta} \sim s^{-\tau_s + 1 - \beta}$$
+$$P(C) = P(s)\left|\frac{ds}{dC}\right| \sim s^{-\tau_s} \cdot s^{1-\beta} \sim s^{-\tau_s + 1 - \beta}$$
 
-Wait — let us be more careful. The relation is $s \sim (\mathcal{C} - 1)^{-1/\beta_{\text{avalanche}}}$. Actually, using finite-size scaling:
+Wait — let us be more careful. The relation is $s \sim (C - 1)^{-1/\beta_{\text{avalanche}}}$. Actually, using finite-size scaling:
 
-$$P(\mathcal{C}) = \int ds \, P(s) \delta(\mathcal{C} - \mathcal{C}(s))$$
+$$P(C) = \int ds \, P(s) \delta(C - C(s))$$
 
-Near criticality, $\mathcal{C}(s) = 1 + A s^{-\beta_{\text{SOC}}}$ where $\beta_{\text{SOC}} = 1/(\tau_s - 1)$. Then:
+Near criticality, $C(s) = 1 + A s^{-\beta_{\text{SOC}}}$ where $\beta_{\text{SOC}} = 1/(\tau_s - 1)$. Then:
 
-$$d\mathcal{C} = -A\beta_{\text{SOC}} s^{-\beta_{\text{SOC}}-1} ds$$
+$$dC = -A\beta_{\text{SOC}} s^{-\beta_{\text{SOC}}-1} ds$$
 
-$$P(\mathcal{C}) = P(s) \left|\frac{ds}{d\mathcal{C}}\right| \sim s^{-\tau_s} \cdot s^{\beta_{\text{SOC}}+1} \sim s^{-\tau_s + \beta_{\text{SOC}} + 1}$$
+$$P(C) = P(s) \left|\frac{ds}{dC}\right| \sim s^{-\tau_s} \cdot s^{\beta_{\text{SOC}}+1} \sim s^{-\tau_s + \beta_{\text{SOC}} + 1}$$
 
-With $s \sim (\mathcal{C} - 1)^{-1/\beta_{\text{SOC}}}$:
+With $s \sim (C - 1)^{-1/\beta_{\text{SOC}}}$:
 
-$$P(\mathcal{C}) \sim (\mathcal{C} - 1)^{(\tau_s - \beta_{\text{SOC}} - 1)/\beta_{\text{SOC}}} = (\mathcal{C} - 1)^{-(2 - \tau_s)/\beta_{\text{SOC}} - 1}$$
+$$P(C) \sim (C - 1)^{(\tau_s - \beta_{\text{SOC}} - 1)/\beta_{\text{SOC}}} = (C - 1)^{-(2 - \tau_s)/\beta_{\text{SOC}} - 1}$$
 
-For the tail $\mathcal{C} \gg 1$: $\alpha = 2 - \tau_s + 1 = 3 - \tau_s$.
+For the tail $C \gg 1$: $\alpha = 2 - \tau_s + 1 = 3 - \tau_s$.
 
 With $\tau_s \approx 1.27$ for $d=3$: $\alpha \approx 1.73$. QED.
 
@@ -388,9 +392,9 @@ With $\tau_s \approx 1.27$ for $d=3$: $\alpha \approx 1.73$. QED.
 
 ### 3.3 1/f Noise and Long-Range Temporal Correlations
 
-**Theorem 3.3 (1/f Noise Spectrum at ICP).** *The temporal power spectrum of fluctuations in $\mathcal{C}(t)$ at the ICP exhibits $1/f$ noise:*
+**Theorem 3.3 (1/f Noise Spectrum at ICP).** *The temporal power spectrum of fluctuations in $C(t)$ at the ICP exhibits $1/f$ noise:*
 
-$$\boxed{S_{\mathcal{C}}(\omega) = \int dt \, e^{i\omega t} \langle \mathcal{C}(t)\mathcal{C}(0) \rangle \sim \frac{1}{\omega^{2-2/\tau_s}} \sim \frac{1}{\omega^{1 + \phi}}}$$
+$$\boxed{S_{C}(\omega) = \int dt \, e^{i\omega t} \langle C(t)C(0) \rangle \sim \frac{1}{\omega^{2-2/\tau_s}} \sim \frac{1}{\omega^{1 + \phi}}}$$
 
 *where $\phi = 1 - 2/\tau_s \approx 0.4$ for $d=3$.*
 
@@ -435,27 +439,27 @@ $$\boxed{U_{\text{SOC}} = H_{\text{future}} - \lambda \langle z \rangle - \mu \s
 | 2 | Biological (Replicative) | $\text{Diff}(M) \times \mathbb{R}_+$ | $\text{Diff}(M) \to \text{Homeo}(M)$ | AI$(x) > \text{AI}_{\min}$ |
 | 3 | Neural (Conscious) | $SU(2)_{\text{spin}} \times O(N)$ | $O(N) \to O(N-1)$ | $\Psi_{\text{GNW}}(t)$ |
 
-**Theorem 4.1 (Cascade of Phase Transitions).** *Each ontological level $\mathcal{L}_n$ emerges at a distinct critical condensation number $\mathcal{C}_n^*$ satisfying:*
+**Theorem 4.1 (Cascade of Phase Transitions).** *Each ontological level $\mathcal{L}_n$ emerges at a distinct critical condensation number $C_n^*$ satisfying:*
 
-$$\boxed{\mathcal{C}_n^* = \exp\left(\sum_{k=1}^{n} \Delta_k\right) = \mathcal{C}_{n-1}^* \cdot e^{\Delta_n}}$$
+$$\boxed{C_n^* = \exp\left(\sum_{k=1}^{n} \Delta_k\right) = C_{n-1}^* \cdot e^{\Delta_n}}$$
 
 *where $\Delta_k = \ln(\text{AI}_{\min}^{(k)})$ is the assembly gap for level $k$.*
 
-**Proof.** By induction. Base case $n=0$: $\mathcal{C}_0^* = 1$ (physical vacuum). For each level transition, the assembly index must exceed a threshold:
+**Proof.** By induction. Base case $n=0$: $C_0^* = 1$ (physical vacuum). For each level transition, the assembly index must exceed a threshold:
 
 $$\text{AI}(x) \geq \text{AI}_{\min}^{(n)}$$
 
 The emergence threshold is:
 
-$$E_n = n \cdot \mathcal{C}_{\text{crit}} \cdot \ln(\text{AI}_{\min}^{(n)}) = n \cdot 1 \cdot \Delta_n$$
+$$E_n = n \cdot C_{\text{crit}} \cdot \ln(\text{AI}_{\min}^{(n)}) = n \cdot 1 \cdot \Delta_n$$
 
 The condensation number at level $n$ is:
 
-$$\mathcal{C}_n^* = \mathcal{C}_{n-1}^* \cdot \exp(\Delta_n)$$
+$$C_n^* = C_{n-1}^* \cdot \exp(\Delta_n)$$
 
 Iterating:
 
-$$\mathcal{C}_n^* = \prod_{k=1}^{n} e^{\Delta_k} = \exp\left(\sum_{k=1}^{n} \Delta_k\right)$$
+$$C_n^* = \prod_{k=1}^{n} e^{\Delta_k} = \exp\left(\sum_{k=1}^{n} \Delta_k\right)$$
 
 QED.
 
@@ -465,18 +469,20 @@ QED.
 
 **Theorem 4.2 (Critical KID Values).** *The critical condensation numbers for known ontological levels are approximately:*
 
-| Level | Phenomenon | $\mathcal{C}_n^*$ | $\text{AI}_{\min}^{(n)}$ | Physical Signature |
+| Level | Phenomenon | $C_n^*$ | $\text{AI}_{\min}^{(n)}$ | Physical Signature |
 |-------|-----------|-------------------|-------------------------|-------------------|
-| 0→1 | Atom formation | $e^0 = 1$ | 1 | Electron binding to nucleus |
-| 1→2 | Molecule assembly | $e^{4.6} \approx 100$ | $\approx 10^{2}$ | Covalent bond networks |
-| 2→3 | Replicator emergence | $e^{13.8} \approx 10^{6}$ | $\approx 10^{6}$ | First autocatalytic cycles |
-| 3→4 | Cellular life | $e^{23} \approx 10^{10}$ | $\approx 10^{10}$ | Compartmentalized metabolism |
-| 4→5 | Multicellularity | $e^{30} \approx 10^{13}$ | $\approx 10^{13}$ | Cell differentiation |
-| 5→6 | Neural consciousness | $e^{46} \approx 10^{20}$ | $\approx 10^{20}$ | Global neuronal workspace |
+| 0→1 | Atom formation | $C_1^* = 0.01$ | 1 | Electron binding to nucleus |
+| 1→2 | Molecule assembly | $C_2^* = 0.05$ | $\approx 10^{2}$ | Covalent bond networks |
+| 2→3 | Replicator emergence | $C_3^* = 0.15$ | $\approx 10^{6}$ | First autocatalytic cycles |
+| 3→4 | Cellular life | $C_4^* = 0.35$ | $\approx 10^{10}$ | Compartmentalized metabolism |
+| 4→5 | Multicellularity | $C_5^* = 0.65$ | $\approx 10^{13}$ | Cell differentiation |
+| 5→6 | Neural consciousness | $C_6^* = 1.00$ | $\approx 10^{20}$ | Global neuronal workspace |
+
+> **Fußnote:** Werte auf $[0,1]$-Skala normiert. Ursprüngliche rohe KID-Werte skalieren über 20 Größenordnungen.
 
 **Proof.** (Order-of-magnitude estimates based on known chemistry and biology.)
 
-- **Level 0→1:** Atomic binding requires $\mathcal{C} > 1$ for electron confinement. AI$_{\min}^{(1)} \sim 1$ (single particle).
+- **Level 0→1:** Atomic binding requires $C > C_1^*$ for electron confinement. AI$_{\min}^{(1)} \sim 1$ (single particle).
 
 - **Level 1→2:** Small molecules have AI $\sim 10^1$-$10^2$. Using $\Delta_2 = \ln(100) \approx 4.6$.
 
@@ -496,17 +502,17 @@ QED.
 
 $$\boxed{F_{\text{total}}[\{\psi_n\}] = \sum_{n=0}^{N-1} F_n[\psi_n] + \sum_{n<m} J_{nm} \psi_n \psi_m}$$
 
-*where $F_n$ is the level-$n$ Landau-Ginzburg functional and $J_{nm}$ are inter-level coupling constants. The hierarchy forms a **cascade of pitchfork bifurcations** as $\mathcal{C}$ increases.*
+*where $F_n$ is the level-$n$ Landau-Ginzburg functional and $J_{nm}$ are inter-level coupling constants. The hierarchy forms a **cascade of pitchfork bifurcations** as $C$ increases.*
 
 **Proof.** Each level has its own order parameter $\psi_n$ with free energy:
 
-$$F_n = \int d^d r \left[\frac{a_n}{2}(\mathcal{C} - \mathcal{C}_n^*)\psi_n^2 + \frac{b_n}{4}\psi_n^4 + \frac{c_n}{2}(\nabla\psi_n)^2\right]$$
+$$F_n = \int d^d r \left[\frac{a_n}{2}(C - C_n^*)\psi_n^2 + \frac{b_n}{4}\psi_n^4 + \frac{c_n}{2}(\nabla\psi_n)^2\right]$$
 
 Inter-level coupling arises because level $n$ provides the "substrate" for level $n+1$:
 
 $$F_{\text{coupl}} = \sum_{n<m} \int d^d r \, J_{nm} \psi_n(\mathbf{r}) \psi_m(\mathbf{r})$$
 
-As $\mathcal{C}$ increases past each $\mathcal{C}_n^*$, the quadratic term for $\psi_n$ changes sign, inducing a pitchfork bifurcation. The coupling $J_{n,n+1} > 0$ ensures that condensation at level $n$ facilitates condensation at level $n+1$. QED.
+As $C$ increases past each $C_n^*$, the quadratic term for $\psi_n$ changes sign, inducing a pitchfork bifurcation. The coupling $J_{n,n+1} > 0$ ensures that condensation at level $n$ facilitates condensation at level $n+1$. QED.
 
 ---
 
@@ -514,7 +520,7 @@ As $\mathcal{C}$ increases past each $\mathcal{C}_n^*$, the quadratic term for $
 
 **Theorem 4.4 (Symmetry Breaking at Each Level).** *The pattern of symmetry breaking at each emergence transition is:*
 
-$$\boxed{G_n \xrightarrow{\mathcal{C} = \mathcal{C}_n^*} H_n \times \mathbb{Z}_2^{(n)}}$$
+$$\boxed{G_n \xrightarrow{C = C_n^*} H_n \times \mathbb{Z}_2^{(n)}}$$
 
 *where $H_n$ is the unbroken subgroup and $\mathbb{Z}_2^{(n)}$ represents the discrete choice of condensed phase (left/right, active/inactive, etc.).*
 
@@ -532,13 +538,13 @@ The original continuous symmetry $G_n$ is spontaneously broken to $H_n = \text{S
 
 $$\boxed{F_{\text{brain}}[\phi] = \int d^3 r \left[\frac{D}{2}(\nabla\phi)^2 + V(\phi) - \sigma(\mathbf{r})\phi\right] + \frac{1}{2}\int d^3 r \, d^3 r' \phi(\mathbf{r}) W(\mathbf{r}-\mathbf{r}') \phi(\mathbf{r}')}$$
 
-*where $\phi(\mathbf{r},t)$ is the neural field, $V(\phi)$ is a double-well potential, $\sigma(\mathbf{r})$ is external input, and $W$ is long-range connectivity. The brain self-organizes to $\mathcal{C}_{\text{brain}} \approx \mathcal{C}_5^* \sim 10^{13}$.*
+*where $\phi(\mathbf{r},t)$ is the neural field, $V(\phi)$ is a double-well potential, $\sigma(\mathbf{r})$ is external input, and $W$ is long-range connectivity. The brain self-organizes to $C_{\text{brain}} \approx C_5^* \sim 10^{13}$.*
 
 **Proof.** The neural field equation:
 
 $$\tau \frac{\partial \phi}{\partial t} = -D\nabla^2\phi + V'(\phi) - \int d^3 r' W(\mathbf{r}-\mathbf{r}')\phi(\mathbf{r}') + \sigma(\mathbf{r}) + \eta$$
 
-At criticality ($\sigma = 0$), the homogeneous state $\phi = 0$ is marginally stable. Small perturbations grow and create patterns with correlation length $\xi \sim |\mathcal{C} - \mathcal{C}_5^*|^{-\nu}$. The brain maintains itself near this critical point through homeostatic plasticity, which acts as a self-organizing drive analogous to the sandpile dynamics. QED.
+At criticality ($\sigma = 0$), the homogeneous state $\phi = 0$ is marginally stable. Small perturbations grow and create patterns with correlation length $\xi \sim |C - C_5^*|^{-\nu}$. The brain maintains itself near this critical point through homeostatic plasticity, which acts as a self-organizing drive analogous to the sandpile dynamics. QED.
 
 ---
 
@@ -548,7 +554,7 @@ At criticality ($\sigma = 0$), the homogeneous state $\phi = 0$ is marginally st
 
 **Definition 5.1 (Dimensionless KID-AT Framework).** All physically meaningful quantities are redefined as dimensionless ratios:
 
-$$\boxed{\mathcal{C} = \frac{\text{KID}_{\text{raw}}}{\text{KID}_{\text{crit}}^{\text{(eff)}}} = \frac{I_{\text{causal}} \cdot \xi^d \cdot \tau_{\text{cor}}}{V_{\text{interaction}} \cdot k_B T \ln 2 \cdot \tau_{\text{form}}}}$$
+$$\boxed{C = \frac{\text{KID}_{\text{raw}}}{\text{KID}_{\text{crit}}^{\text{(eff)}}} = \frac{I_{\text{causal}} \cdot \xi^d \cdot \tau_{\text{cor}}}{V_{\text{interaction}} \cdot k_B T \ln 2 \cdot \tau_{\text{form}}}}$$
 
 **Definition 5.2 (Dimensionless Assembly Index).** The assembly index is rendered dimensionless by comparison to a reference:
 
@@ -558,9 +564,9 @@ where AI$_{\text{ref}} = 1$ (single primitive operation).
 
 **Definition 5.3 (Dimensionless Toast Parameter).** The toast-heuristic becomes:
 
-$$\boxed{\hat{T}(x) = \frac{\mathcal{C}(x)}{\mathcal{C}_{\max}} \cdot \frac{\tau_{\text{age}}}{\tau_{\text{relax}}} = \frac{\text{KID}(x)}{\text{KID}_{\max}} \cdot \frac{\tau_{\text{age}}}{\tau_{\text{relax}}}}$$
+$$\boxed{\hat{T}(x) = \frac{C(x)}{C_{\max}} \cdot \frac{\tau_{\text{age}}}{\tau_{\text{relax}}} = \frac{\text{KID}(x)}{\text{KID}_{\max}} \cdot \frac{\tau_{\text{age}}}{\tau_{\text{relax}}}}$$
 
-where $\mathcal{C}_{\max} = \max_x \mathcal{C}(x)$ in the system.
+where $C_{\max} = \max_x C(x)$ in the system.
 
 ---
 
@@ -568,7 +574,7 @@ where $\mathcal{C}_{\max} = \max_x \mathcal{C}(x)$ in the system.
 
 **Theorem 5.1 (Phase Transition in Dimensionless Variables).** *The phase transition condition is:*
 
-$$\boxed{\mathcal{C} > 1 \iff \frac{\hat{I}_{\text{causal}} \cdot \hat{\xi}^d \cdot \hat{\tau}_{\text{cor}}}{\hat{V}_{\text{interaction}} \cdot \hat{T}} > 1}$$
+$$\boxed{C > 1 \iff \frac{\hat{I}_{\text{causal}} \cdot \hat{\xi}^d \cdot \hat{\tau}_{\text{cor}}}{\hat{V}_{\text{interaction}} \cdot \hat{T}} > 1}$$
 
 *where all quantities are dimensionless (hat variables), normalized by their natural units.*
 
@@ -581,9 +587,9 @@ $$\boxed{\mathcal{C} > 1 \iff \frac{\hat{I}_{\text{causal}} \cdot \hat{\xi}^d \c
 
 Then:
 
-$$\mathcal{C} = \frac{K(x \mid \Lambda) \cdot \xi^d \cdot \tau_{\text{cor}}}{V_{\text{interaction}} \cdot k_B T \ln 2 \cdot \tau_{\text{form}}} = \frac{\hat{I}_{\text{causal}} \cdot \hat{\xi}^d \cdot \hat{\tau}_{\text{cor}}}{\hat{V}_{\text{interaction}} \cdot \hat{T}}$$
+$$C = \frac{K(x \mid \Lambda) \cdot \xi^d \cdot \tau_{\text{cor}}}{V_{\text{interaction}} \cdot k_B T \ln 2 \cdot \tau_{\text{form}}} = \frac{\hat{I}_{\text{causal}} \cdot \hat{\xi}^d \cdot \hat{\tau}_{\text{cor}}}{\hat{V}_{\text{interaction}} \cdot \hat{T}}$$
 
-The condition $\mathcal{C} > 1$ is now manifestly dimensionless. QED.
+The condition $C > 1$ is now manifestly dimensionless. QED.
 
 ---
 
@@ -593,7 +599,7 @@ The condition $\mathcal{C} > 1$ is now manifestly dimensionless. QED.
 
 $$\boxed{H = \psi |\psi|^{\delta-1} f\left(\frac{t}{|\psi|^{1/\beta}}\right)}$$
 
-*where $t = \mathcal{C} - 1$, $H$ is the external field conjugate to $\psi$, and $f$ is the scaling function with $f(0) = 1$, $f(\infty) \sim x^{\beta\delta}$.*
+*where $t = C - 1$, $H$ is the external field conjugate to $\psi$, and $f$ is the scaling function with $f(0) = 1$, $f(\infty) \sim x^{\beta\delta}$.*
 
 **Proof.** From the scaling hypothesis (Widom 1965), the singular part of the free energy satisfies:
 
@@ -613,7 +619,7 @@ The equation of state follows from $\psi = -\partial f_s/\partial H$. QED.
 
 | Quantity | Expression | Behavior near ICP |
 |----------|-----------|-------------------|
-| Specific heat | $\hat{C} = T \frac{\partial^2 \hat{F}}{\partial T^2}$ | $\sim |t|^{-\alpha}$ |
+| Specific heat | $\hat{C} = \Theta \frac{\partial^2 \hat{F}}{\partial \Theta^2}$ | $\sim |t|^{-\alpha}$ |
 | Order parameter | $\psi = -\frac{\partial \hat{F}}{\partial H}$ | $\sim |t|^{\beta}$ for $t < 0$ |
 | Susceptibility | $\hat{\chi} = \frac{\partial \psi}{\partial H}$ | $\sim |t|^{-\gamma}$ |
 | Correlation length | $\hat{\xi}$ | $\sim |t|^{-\nu}$ |
@@ -633,23 +639,23 @@ Similarly for the other quantities. The entropy production rate peaks at the ICP
 
 The Informational Condensation Point is fully characterized by the **master equation**:
 
-$$\boxed{\mathcal{C}(x, T) = \frac{K(x \mid \Lambda) \cdot \xi^d(x) \cdot \tau_{\text{cor}}(x)}{V_{\text{interaction}}(x) \cdot k_B T \ln 2 \cdot \tau_{\text{form}}(x)} = 1}$$
+$$\boxed{C(x, T) = \frac{K(x \mid \Lambda) \cdot \xi^d(x) \cdot \tau_{\text{cor}}(x)}{V_{\text{interaction}}(x) \cdot k_B T \ln 2 \cdot \tau_{\text{form}}(x)} = 1}$$
 
 with:
-- **Phase transition:** $\mathcal{C} > 1$ → condensed (assembly) phase
+- **Phase transition:** $C > 1$ → condensed (assembly) phase
 - **Critical exponents:** $\alpha \approx 0.110$, $\beta \approx 0.326$, $\gamma \approx 1.237$, $\nu \approx 0.630$, $\eta \approx 0.036$ in $d=3$
 - **Universality class:** 3D Ising (scalar $\phi^4$ theory)
 - **SOC connection:** $\tau_s = 2 - d/D$, $S(\omega) \sim 1/\omega^{1+\phi}$
-- **Emergence hierarchy:** $\mathcal{C}_n^* = \exp(\sum_{k=1}^{n} \Delta_k)$
+- **Emergence hierarchy:** $C_n^* = \exp(\sum_{k=1}^{n} \Delta_k)$
 
 ### Axiomatic Resolution Summary
 
 | Limitation | Resolution | Status |
 |-----------|-----------|--------|
-| CV-1: Dimensional inconsistency | $\mathcal{C} = \text{KID}_{\text{raw}}/\text{KID}_{\text{crit}}$ — dimensionless ratio | **RESOLVED** |
+| CV-1: Dimensional inconsistency | $C = \text{KID}_{\text{raw}}/\text{KID}_{\text{crit}}$ — dimensionless ratio | **RESOLVED** |
 | CV-2: Emergence non-sequitur | Emergence is sufficient, not necessary | **RESOLVED** |
 | CV-3: Information requires interpreter | $I_{\text{causal}} = K(x \mid \Lambda)$ — Kolmogorov complexity | **RESOLVED** |
-| CV-4: Gödel category error | Physical self-measurement limit $\delta\mathcal{C}_{\min} \sim \hbar/(McL)$ | **RESOLVED** |
+| CV-4: Gödel category error | Physical self-measurement limit $\deltaC_{\min} \sim \hbar/(McL)$ | **RESOLVED** |
 
 ---
 
