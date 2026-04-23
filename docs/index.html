@@ -3,30 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KID Framework - Causal Analytics & Ontology</title>
+    <title>KID Framework — Kinematic Interaction Dynamics</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        if (typeof tailwind !== 'undefined') {
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            terminal: {
-                                dark: '#030303',
-                                green: '#00ff41',
-                                dim: '#008f11',
-                                highlight: '#ccffcc'
-                            }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'kid': {
+                            bg: '#0a0a0f',
+                            surface: '#12121a',
+                            border: '#1e1e2e',
+                            primary: '#00d4aa',
+                            secondary: '#7c3aed',
+                            accent: '#f59e0b',
+                            text: '#e2e8f0',
+                            muted: '#64748b',
+                            dim: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        'mono': ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
                         },
-                        animation: {
-                            'blink': 'blink 1s step-end infinite',
-                        },
-                        keyframes: {
-                            blink: {
-                                '0%, 100%': { opacity: '1' },
-                                '50%': { opacity: '0' },
-                            }
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(0, 212, 170, 0.3)' },
+                            '100%': { boxShadow: '0 0 20px rgba(0, 212, 170, 0.6), 0 0 40px rgba(0, 212, 170, 0.2)' },
                         }
                     }
                 }
@@ -34,96 +47,536 @@
         }
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         html { scroll-behavior: smooth; }
-        .scanlines::before {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 100;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00d4aa 0%, #7c3aed 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .file-link { transition: all 0.2s ease; }
-        .file-link:hover { padding-left: 0.5rem; color: #00ff41; }
+        
+        /* Card hover effect */
+        .module-card {
+            transition: all 0.3s ease;
+        }
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px -10px rgba(0, 212, 170, 0.15);
+        }
+        
+        /* Timeline connector */
+        .timeline-line {
+            background: linear-gradient(to bottom, #00d4aa, #7c3aed, #f59e0b);
+        }
+        
+        /* Equation box glow */
+        .equation-glow {
+            box-shadow: 0 0 30px rgba(0, 212, 170, 0.1), inset 0 0 30px rgba(0, 212, 170, 0.05);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="bg-kid-bg text-kid-text min-h-screen" x-data="kidApp()">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-kid-bg/80 backdrop-blur-xl border-b border-kid-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-kid-primary to-kid-secondary flex items-center justify-center font-mono font-bold text-black text-sm">K</div>
+                    <span class="font-bold tracking-tight text-lg">KID<span class="text-kid-primary">.</span>Framework</span>
+                </div>
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-kid-muted">
+                    <a href="#manifesto" class="hover:text-kid-primary transition-colors">Manifesto</a>
+                    <a href="#equation" class="hover:text-kid-primary transition-colors">The Core Equation</a>
+                    <a href="#timeline" class="hover:text-kid-primary transition-colors">7 Phases</a>
+                    <a href="#kid-at" class="hover:text-kid-primary transition-colors">KID-AT Fusion</a>
+                    <a href="#modules" class="hover:text-kid-primary transition-colors">Repository</a>
+                </div>
+                <a href="https://github.com/deusexlumen/KID-Framework" target="_blank" class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-kid-surface border border-kid-border hover:border-kid-primary transition-colors text-sm">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        
+        <!-- Hero Section -->
+        <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+            <!-- Background effects -->
+            <div class="absolute inset-0">
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-kid-primary/10 rounded-full blur-[100px]"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-kid-secondary/10 rounded-full blur-[100px]"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-kid-accent/5 rounded-full blur-[120px]"></div>
+            </div>
+            
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-kid-surface border border-kid-border text-sm text-kid-muted">
+                    <span class="w-2 h-2 rounded-full bg-kid-primary animate-pulse"></span>
+                    Scientifically Hardened — Version 2.0
+                </div>
+                
+                <!-- Title -->
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-tight">
+                    <span class="gradient-text">Kinematic</span><br>
+                    <span class="text-white">Interaction</span><br>
+                    <span class="gradient-text">Dynamics</span>
+                </h1>
+                
+                <!-- Subtitle -->
+                <p class="max-w-2xl mx-auto text-lg sm:text-xl text-kid-muted leading-relaxed">
+                    An information-theoretic ontology exploring the emergence of matter, life, and consciousness through the lens of condensation physics.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="#equation" class="group px-8 py-4 rounded-xl bg-gradient-to-r from-kid-primary to-kid-secondary text-black font-bold text-sm uppercase tracking-wider hover:shadow-[0_0_30px_rgba(0,212,170,0.3)] transition-all">
+                        Explore the Equation
+                        <span class="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
+                    </a>
+                    <a href="../README.md" target="_blank" class="px-8 py-4 rounded-xl bg-kid-surface border border-kid-border hover:border-kid-primary transition-colors text-sm font-medium">
+                        Read the Thesis
+                    </a>
+                </div>
+                
+                <!-- Scroll indicator -->
+                <div class="pt-16 animate-float">
+                    <a href="#manifesto" class="inline-flex flex-col items-center gap-2 text-kid-muted hover:text-kid-primary transition-colors">
+                        <span class="text-xs uppercase tracking-widest">Discover</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manifesto Section -->
+        <section id="manifesto" class="py-24 bg-kid-surface/50 border-y border-kid-border">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 text-kid-primary font-mono text-sm uppercase tracking-wider">
+                            <span class="w-8 h-[1px] bg-kid-primary"></span>
+                            The Manifesto
+                        </div>
+                        <h2 class="text-4xl sm:text-5xl font-bold leading-tight">
+                            The universe is fundamentally an <span class="gradient-text">information process</span>.
+                        </h2>
+                        <div class="space-y-4 text-kid-muted leading-relaxed">
+                            <p>
+                                The KID Framework adapts software engineering paradigms — versioning, refactoring, adversarial audits — to structure abstract ontological concepts into machine-readable formats.
+                            </p>
+                            <p>
+                                <span class="text-kid-primary font-mono">XML</span> for audits. <span class="text-kid-secondary font-mono">LaTeX</span> for mathematical proof. <span class="text-kid-accent font-mono">Markdown</span> for logic validation. Theory becomes code. Philosophy becomes testable.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <div class="px-4 py-2 rounded-lg bg-kid-bg border border-kid-border">
+                                <div class="text-2xl font-bold font-mono text-kid-primary">7</div>
+                                <div class="text-xs text-kid-muted">Development Phases</div>
+                            </div>
+                            <div class="px-4 py-2 rounded-lg bg-kid-bg border border-kid-border">
+                                <div class="text-2xl font-bold font-mono text-kid-secondary">11k+</div>
+                                <div class="text-xs text-kid-muted">Words in Synthesis</div>
+                            </div>
+                            <div class="px-4 py-2 rounded-lg bg-kid-bg border border-kid-border">
+                                <div class="text-2xl font-bold font-mono text-kid-accent">6</div>
+                                <div class="text-xs text-kid-muted">Frameworks Unified</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Process Visualization -->
+                    <div class="relative">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-kid-bg border border-kid-border">
+                                <div class="w-12 h-12 rounded-lg bg-kid-primary/20 flex items-center justify-center text-kid-primary font-mono font-bold">01</div>
+                                <div>
+                                    <div class="font-semibold">Maximal Entropy</div>
+                                    <div class="text-sm text-kid-muted">The primordial soup of undifferentiated information</div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center">
+                                <svg class="w-6 h-6 text-kid-dim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-kid-bg border border-kid-border">
+                                <div class="w-12 h-12 rounded-lg bg-kid-secondary/20 flex items-center justify-center text-kid-secondary font-mono font-bold">02</div>
+                                <div>
+                                    <div class="font-semibold">Structured Information</div>
+                                    <div class="text-sm text-kid-muted">Atoms, molecules, patterns emerge</div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center">
+                                <svg class="w-6 h-6 text-kid-dim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-kid-bg border border-kid-primary/50 shadow-[0_0_20px_rgba(0,212,170,0.1)]">
+                                <div class="w-12 h-12 rounded-lg bg-kid-accent/20 flex items-center justify-center text-kid-accent font-mono font-bold">03</div>
+                                <div>
+                                    <div class="font-semibold">Complex Systems</div>
+                                    <div class="text-sm text-kid-muted">Life, consciousness, and beyond</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Equation Section -->
+        <section id="equation" class="py-24 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-kid-primary/5 via-transparent to-kid-secondary/5"></div>
+            
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-8">
+                    <div class="inline-flex items-center gap-2 text-kid-primary font-mono text-sm uppercase tracking-wider">
+                        <span class="w-8 h-[1px] bg-kid-primary"></span>
+                        The Unification
+                        <span class="w-8 h-[1px] bg-kid-primary"></span>
+                    </div>
+                    
+                    <h2 class="text-3xl sm:text-5xl font-bold">The Informational Condensation Point</h2>
+                    
+                    <!-- Main Equation Box -->
+                    <div class="max-w-3xl mx-auto p-8 sm:p-12 rounded-2xl bg-kid-surface border border-kid-primary/30 equation-glow">
+                        <div class="text-4xl sm:text-6xl font-mono font-bold text-white mb-4" x-html="renderMath('C_c = 1')">
+                        </div>
+                        <div class="text-lg text-kid-muted mb-6">
+                            At maximal toast efficiency, the system reaches a universal fixed point where <span class="text-kid-primary font-mono">C = 1</span>.
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-4 text-sm font-mono">
+                            <div class="px-3 py-1 rounded bg-kid-bg text-kid-primary">T ≡ C</div>
+                            <div class="px-3 py-1 rounded bg-kid-bg text-kid-secondary">η<sub>thermo</sub> = 4C/(1+C)²</div>
+                            <div class="px-3 py-1 rounded bg-kid-bg text-kid-accent">max η at C = 1</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Secondary Equations -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8">
+                        <div class="p-6 rounded-xl bg-kid-surface border border-kid-border hover:border-kid-primary/50 transition-colors">
+                            <div class="text-xs text-kid-muted uppercase tracking-wider mb-2">KID Density</div>
+                            <div class="text-lg font-mono text-kid-primary" x-html="renderMath('KID = \\oint \\frac{I_{causal}}{V_{interaction}} dt')"></div>
+                        </div>
+                        <div class="p-6 rounded-xl bg-kid-surface border border-kid-border hover:border-kid-secondary/50 transition-colors">
+                            <div class="text-xs text-kid-muted uppercase tracking-wider mb-2">Assembly Index</div>
+                            <div class="text-lg font-mono text-kid-secondary" x-html="renderMath('AI_{min} = \\min_{paths} |p|')"></div>
+                        </div>
+                        <div class="p-6 rounded-xl bg-kid-surface border border-kid-border hover:border-kid-accent/50 transition-colors">
+                            <div class="text-xs text-kid-muted uppercase tracking-wider mb-2">Toast Efficiency</div>
+                            <div class="text-lg font-mono text-kid-accent" x-html="renderMath('\\eta_{thermo} = \\frac{4C}{(1+C)^2}')"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7 Phases Timeline -->
+        <section id="timeline" class="py-24 bg-kid-surface/30 border-y border-kid-border">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center gap-2 text-kid-primary font-mono text-sm uppercase tracking-wider mb-4">
+                        <span class="w-8 h-[1px] bg-kid-primary"></span>
+                        Repository Architecture
+                        <span class="w-8 h-[1px] bg-kid-primary"></span>
+                    </div>
+                    <h2 class="text-4xl sm:text-5xl font-bold">7 Sequential Phases</h2>
+                    <p class="mt-4 text-kid-muted max-w-2xl mx-auto">From philosophical foundations to the KID-AT fusion — a complete theoretical pipeline.</p>
+                </div>
+                
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-4 sm:left-1/2 top-0 bottom-0 w-[2px] timeline-line sm:-translate-x-1/2"></div>
+                    
+                    <!-- Phase 01 -->
+                    <div class="relative flex items-start gap-8 mb-12 sm:mb-16">
+                        <div class="hidden sm:block w-1/2 text-right pr-8">
+                            <h3 class="text-xl font-bold mb-2">Philosophical Foundations</h3>
+                            <p class="text-sm text-kid-muted">Ontological basis and deconstructive analysis of framework conditions.</p>
+                            <a href="../01-PHILOSOPHICAL-FOUNDATIONS/" class="inline-flex items-center gap-1 mt-3 text-sm text-kid-primary hover:underline">
+                                Explore <span>→</span>
+                            </a>
+                        </div>
+                        <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-kid-bg border-2 border-kid-primary flex items-center justify-center font-mono font-bold text-kid-primary z-10">01</div>
+                        <div class="sm:hidden ml-12">
+                            <h3 class="text-lg font-bold mb-1">Philosophical Foundations</h3>
+                            <p class="text-sm text-kid-muted">Ontological basis and deconstructive analysis.</p>
+                        </div>
+                        <div class="hidden sm:block w-1/2 pl-8">
+                            <div class="p-4 rounded-lg bg-kid-bg border border-kid-border">
+                                <div class="text-xs text-kid-muted mb-2">Key Documents</div>
+                                <a href="../01-PHILOSOPHICAL-FOUNDATIONS/ontologische_kondensation_synthese.md" class="block text-sm text-kid-primary hover:underline mb-1">Ontologische Kondensation</a>
+                                <a href="../01-PHILOSOPHICAL-FOUNDATIONS/theorie_mapping_philosophie_wissenschaft.md" class="block text-sm text-kid-primary hover:underline">Theorie Mapping</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 02 -->
+                    <div class="relative flex items-start gap-8 mb-12 sm:mb-16">
+                        <div class="hidden sm:block w-1/2 text-right pr-8">
+                            <div class="p-4 rounded-lg bg-kid-bg border border-kid-border">
+                                <div class="text-xs text-kid-muted mb-2">Key Documents</div>
+                                <a href="../02-SCIENTIFIC-FORMALIZATION/THEORETICAL_CONSTRUCT.md" class="block text-sm text-kid-primary hover:underline mb-1">Theoretical Construct</a>
+                                <a href="../02-SCIENTIFIC-FORMALIZATION/embodiment_architect_report.md" class="block text-sm text-kid-primary hover:underline">Embodiment Architect Report</a>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-kid-bg border-2 border-kid-secondary flex items-center justify-center font-mono font-bold text-kid-secondary z-10">02</div>
+                        <div class="sm:hidden ml-12">
+                            <h3 class="text-lg font-bold mb-1">Scientific Formalization</h3>
+                            <p class="text-sm text-kid-muted">Logic validation and theoretical architecture.</p>
+                        </div>
+                        <div class="hidden sm:block w-1/2 pl-8">
+                            <h3 class="text-xl font-bold mb-2">Scientific Formalization</h3>
+                            <p class="text-sm text-kid-muted">Logic validation and theoretical architecture development.</p>
+                            <a href="../02-SCIENTIFIC-FORMALIZATION/" class="inline-flex items-center gap-1 mt-3 text-sm text-kid-primary hover:underline">
+                                Explore <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 03 -->
+                    <div class="relative flex items-start gap-8 mb-12 sm:mb-16">
+                        <div class="hidden sm:block w-1/2 text-right pr-8">
+                            <h3 class="text-xl font-bold mb-2">Theoretical Integration</h3>
+                            <p class="text-sm text-kid-muted">Axiomatic fusion and system terminology refactoring.</p>
+                            <a href="../03-THEORETICAL-INTEGRATION/" class="inline-flex items-center gap-1 mt-3 text-sm text-kid-primary hover:underline">
+                                Explore <span>→</span>
+                            </a>
+                        </div>
+                        <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-kid-bg border-2 border-kid-accent flex items-center justify-center font-mono font-bold text-kid-accent z-10">03</div>
+                        <div class="sm:hidden ml-12">
+                            <h3 class="text-lg font-bold mb-1">Theoretical Integration</h3>
+                            <p class="text-sm text-kid-muted">Axiomatic fusion and terminology refactoring.</p>
+                        </div>
+                        <div class="hidden sm:block w-1/2 pl-8">
+                            <div class="p-4 rounded-lg bg-kid-bg border border-kid-border">
+                                <div class="text-xs text-kid-muted mb-2">Key Documents</div>
+                                <a href="../03-THEORETICAL-INTEGRATION/theory_fusion_axiomatic_report.md" class="block text-sm text-kid-primary hover:underline mb-1">Axiomatic Fusion Report</a>
+                                <a href="../03-THEORETICAL-INTEGRATION/terminology_refactoring_summary.md" class="block text-sm text-kid-primary hover:underline">Terminology Refactoring</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 04 -->
+                    <div class="relative flex items-start gap-8 mb-12 sm:mb-16">
+                        <div class="hidden sm:block w-1/2 text-right pr-8">
+                            <div class="p-4 rounded-lg bg-kid-bg border border-kid-border">
+                                <div class="text-xs text-kid-muted mb-2">Key Documents</div>
+                                <a href="../04-FORMALIZATION/KID_Calculus_Formalization.tex" class="block text-sm text-kid-primary hover:underline mb-1">KID Calculus (LaTeX)</a>
+                                <a href="../04-FORMALIZATION/logic_purge_report.xml" class="block text-sm text-kid-primary hover:underline">Logic Purge Report (XML)</a>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-kid-bg border-2 border-kid-primary flex items-center justify-center font-mono font-bold text-kid-primary z-10">04</div>
+                        <div class="sm:hidden ml-12">
+                            <h3 class="text-lg font-bold mb-1">Formalization</h3>
+                            <p class="text-sm text-kid-muted">Mathematical KID-Calculus and algorithmic core.</p>
+                        </div>
+                        <div class="hidden sm:block w-1/2 pl-8">
+                            <h3 class="text-xl font-bold mb-2">Formalization</h3>
+                            <p class="text-sm text-kid-muted">The mathematical KID-Calculus (LaTeX/XML) and algorithmic kernel.</p>
+                            <a href="../04-FORMALIZATION/" class="inline-flex items-center gap-1 mt-3 text-sm text-kid-primary hover:underline">
+                                Explore <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 05 -->
+                    <div class="relative flex items-start gap-8 mb-12 sm:mb-16">
+                        <div class="hidden sm:block w-1/2 text-right pr-8">
+                            <h3 class="text-xl font-bold mb-2">Critical Analysis</h3>
+                            <p class="text-sm text-kid-muted">Adversarial audits, limitations, and void analysis.</p>
+                            <a href="../05-CRITICAL-ANALYSIS/" class="inline-flex items-center gap-1 mt-3 text-sm text-kid-primary hover:underline">
+                                Explore <span>→</span>
+                            </a>
+                        </div>
+                        <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-kid-bg border-2 border-kid-secondary flex items-center justify-center font-mono font-bold text-kid-secondary z-10">05</div>
+                        <div class="sm:hidden ml-12">
+                            <h3 class="text-lg font-bold mb-1">Critical Analysis</h3>
+                            <p class="text-sm text-kid-muted">Adversarial audits and limitations.</p>
+                        </div>
+                        <div class="hidden sm:block w-1/2 pl-8">
+                            <div class="p-4 rounded-lg bg-kid-bg border border-kid-border">
+                                <div class="text-xs text-kid-muted mb-2">Key Documents</div>
+                                <a href="../05-CRITICAL-ANALYSIS/RESIDUAL_LIMITATIONS_REPORT.md" class="block text-sm text-kid-primary hover:underline mb-1">Residual Limitations</a>
+                                <a href="../05-CRITICAL-ANALYSIS/the_void_adversarial_audit_report.xml" class="block text-sm text-kid-primary hover:underline">The Void Audit</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 06 -->
+                    <div class="relative flex items-start gap-8 mb-12 sm:mb-16">
+                        <div class="hidden sm:block w-1/2 text-right pr-8">
+                            <div class="p-4 rounded-lg bg-kid-bg border border-kid-border opacity-75">
+                                <div class="text-xs text-kid-muted mb-2">Archive</div>
+                                <p class="text-sm text-kid-muted">Unmodified original documents before refactoring.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-kid-bg border-2 border-kid-dim flex items-center justify-center font-mono font-bold text-kid-dim z-10">06</div>
+                        <div class="sm:hidden ml-12">
+                            <h3 class="text-lg font-bold mb-1 text-kid-muted">Archive Original</h3>
+                            <p class="text-sm text-kid-muted">Unmodified original documents.</p>
+                        </div>
+                        <div class="hidden sm:block w-1/2 pl-8">
+                            <h3 class="text-xl font-bold mb-2 text-kid-muted">Archive Original</h3>
+                            <p class="text-sm text-kid-muted">Unmodified original documents before the refactoring process.</p>
+                            <a href="../06-ARCHIVE-ORIGINAL/" class="inline-flex items-center gap-1 mt-3 text-sm text-kid-dim hover:underline">
+                                Explore <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 07 — KID-AT Fusion (Highlight) -->
+                    <div id="kid-at" class="relative flex items-start gap-8">
+                        <div class="hidden sm:block w-1/2 text-right pr-8">
+                            <h3 class="text-2xl font-bold mb-2 gradient-text">Assembly Theory Fusion</h3>
+                            <p class="text-sm text-kid-muted">KID-AT Tri-Phase Synthesis: Divergence → Collision → Convergence.</p>
+                            <p class="text-sm text-kid-primary mt-2">The Informational Condensation Point (ICP) as universal fixed point.</p>
+                            <a href="../07-ASSEMBLY-THEORY-FUSION/" class="inline-flex items-center gap-1 mt-3 text-sm text-kid-primary hover:underline font-bold">
+                                Explore KID-AT <span>→</span>
+                            </a>
+                        </div>
+                        <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-kid-primary to-kid-secondary flex items-center justify-center font-mono font-bold text-black text-lg z-10 animate-glow">07</div>
+                        <div class="sm:hidden ml-14">
+                            <h3 class="text-xl font-bold mb-1 gradient-text">Assembly Theory Fusion</h3>
+                            <p class="text-sm text-kid-muted">KID-AT Tri-Phase Synthesis.</p>
+                            <p class="text-sm text-kid-primary mt-1">The ICP as universal fixed point.</p>
+                        </div>
+                        <div class="hidden sm:block w-1/2 pl-8">
+                            <div class="p-5 rounded-xl bg-kid-bg border border-kid-primary/50 shadow-[0_0_30px_rgba(0,212,170,0.1)]">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-kid-primary text-black uppercase tracking-wider">NEW</span>
+                                    <span class="text-xs text-kid-muted">v2.0 — Publication Ready</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <a href="../07-ASSEMBLY-THEORY-FUSION/KID_AT_Final_Synthesis.md" class="block text-sm text-kid-primary hover:underline">→ Final Synthesis (~11k words)</a>
+                                    <a href="../07-ASSEMBLY-THEORY-FUSION/KID-AT_Collision_Report.md" class="block text-sm text-kid-primary hover:underline">→ Collision Report</a>
+                                    <a href="../07-ASSEMBLY-THEORY-FUSION/SIMULATION/KID_AT_Simulation_Blueprint.py" class="block text-sm text-kid-primary hover:underline">→ Simulation Blueprint (Python)</a>
+                                    <a href="../07-ASSEMBLY-THEORY-FUSION/THERMODYNAMICS/kid_at_thermodynamic_analysis.tex" class="block text-sm text-kid-primary hover:underline">→ Thermodynamic Analysis (LaTeX)</a>
+                                    <a href="../07-ASSEMBLY-THEORY-FUSION/CONSISTENCY_AUDIT.md" class="block text-sm text-kid-accent hover:underline">→ Consistency Audit (RESOLVED)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repository Grid -->
+        <section id="modules" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-bold">Quick Access</h2>
+                    <p class="mt-2 text-kid-muted">Direct links to all module contents.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <template x-for="mod in modules" :key="mod.id">
+                        <div class="module-card p-6 rounded-xl bg-kid-surface border border-kid-border hover:border-kid-primary/50 cursor-pointer group" @click="window.open(mod.dirPath, '_blank')">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-lg bg-kid-bg border border-kid-border flex items-center justify-center font-mono font-bold text-sm" 
+                                          :class="mod.id === '07' ? 'text-kid-primary' : 'text-kid-muted'" x-text="mod.id"></span>
+                                    <h3 class="font-bold text-white" x-text="mod.title"></h3>
+                                </div>
+                                <span x-show="mod.id === '07'" class="px-2 py-0.5 rounded text-[10px] font-bold bg-kid-primary text-black uppercase">NEW</span>
+                            </div>
+                            <p class="text-sm text-kid-muted mb-4" x-text="mod.desc"></p>
+                            <div class="flex items-center gap-2 text-xs text-kid-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span>Open folder</span>
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-kid-border py-12 bg-kid-surface/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-kid-primary to-kid-secondary flex items-center justify-center font-mono font-bold text-black text-sm">K</div>
+                        <div>
+                            <div class="font-bold">KID Framework</div>
+                            <div class="text-xs text-kid-muted">Condensation-Information-Density</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6 text-sm text-kid-muted">
+                        <a href="../README.md" class="hover:text-kid-primary transition-colors">README</a>
+                        <a href="../NAVIGATION.md" class="hover:text-kid-primary transition-colors">Navigation</a>
+                        <a href="https://github.com/deusexlumen/KID-Framework" target="_blank" class="hover:text-kid-primary transition-colors">GitHub</a>
+                    </div>
+                    <div class="text-xs text-kid-dim font-mono">
+                        <span x-text="new Date().getFullYear()"></span> — CC BY-SA 4.0
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
 
     <script>
-        window.landingLogic = function() {
+        function kidApp() {
             return {
                 modules: [
                     {
                         id: '01',
                         title: 'Philosophical Foundations',
-                        desc: 'Ontologische Basis und dekonstruktive Analyse der Rahmenbedingungen.',
+                        desc: 'Ontological basis and deconstructive analysis of framework conditions.',
                         dirPath: '../01-PHILOSOPHICAL-FOUNDATIONS/',
-                        files: [
-                            { name: 'Ontologische Kondensation', path: '../01-PHILOSOPHICAL-FOUNDATIONS/ontologische_kondensation_synthese.md' },
-                            { name: 'Theorie Mapping', path: '../01-PHILOSOPHICAL-FOUNDATIONS/theorie_mapping_philosophie_wissenschaft.md' }
-                        ]
                     },
                     {
                         id: '02',
                         title: 'Scientific Formalization',
-                        desc: 'Logik-Validierung und theoretische Architekturentwicklung.',
+                        desc: 'Logic validation and theoretical architecture development.',
                         dirPath: '../02-SCIENTIFIC-FORMALIZATION/',
-                        files: [
-                            { name: 'Theoretical Construct', path: '../02-SCIENTIFIC-FORMALIZATION/THEORETICAL_CONSTRUCT.md' },
-                            { name: 'Embodiment Architect Report', path: '../02-SCIENTIFIC-FORMALIZATION/embodiment_architect_report.md' }
-                        ]
                     },
                     {
                         id: '03',
                         title: 'Theoretical Integration',
-                        desc: 'Axiomatische Fusion und Refactoring der Systemterminologie.',
+                        desc: 'Axiomatic fusion and system terminology refactoring.',
                         dirPath: '../03-THEORETICAL-INTEGRATION/',
-                        files: [
-                            { name: 'Axiomatic Fusion Report', path: '../03-THEORETICAL-INTEGRATION/theory_fusion_axiomatic_report.md' },
-                            { name: 'Terminology Refactoring', path: '../03-THEORETICAL-INTEGRATION/terminology_refactoring_summary.md' }
-                        ]
                     },
                     {
                         id: '04',
                         title: 'Formalization',
-                        desc: 'Der mathematische KID-Calculus (LaTeX/XML) und algorithmische Kern.',
+                        desc: 'The mathematical KID-Calculus (LaTeX/XML) and algorithmic kernel.',
                         dirPath: '../04-FORMALIZATION/',
-                        files: [
-                            { name: 'KID Calculus (LaTeX)', path: '../04-FORMALIZATION/KID_Calculus_Formalization.tex' },
-                            { name: 'Logic Purge Report', path: '../04-FORMALIZATION/logic_purge_report.xml' }
-                        ]
                     },
                     {
                         id: '05',
                         title: 'Critical Analysis',
-                        desc: 'Adversarische Audits, Limitationen und Void-Analyse.',
+                        desc: 'Adversarial audits, limitations, and void analysis.',
                         dirPath: '../05-CRITICAL-ANALYSIS/',
-                        files: [
-                            { name: 'Residual Limitations', path: '../05-CRITICAL-ANALYSIS/RESIDUAL_LIMITATIONS_REPORT.md' },
-                            { name: 'The Void Audit', path: '../05-CRITICAL-ANALYSIS/the_void_adversarial_audit_report.xml' }
-                        ]
                     },
                     {
                         id: '07',
                         title: 'Assembly Theory Fusion',
-                        desc: 'KID-AT Tri-Phase Synthesis: Divergenz → Kollision → Konvergenz. Der Informationskondensationspunkt (ICP) als universeller Fixpunkt.',
+                        desc: 'KID-AT Tri-Phase Synthesis: Divergence → Collision → Convergence. The ICP as universal fixed point.',
                         dirPath: '../07-ASSEMBLY-THEORY-FUSION/',
-                        files: [
-                            { name: 'Finale Synthese (~11k Wörter)', path: '../07-ASSEMBLY-THEORY-FUSION/KID_AT_Final_Synthesis.md' },
-                            { name: 'Kollision Report', path: '../07-ASSEMBLY-THEORY-FUSION/KID-AT_Collision_Report.md' },
-                            { name: 'Simulation Blueprint (Python)', path: '../07-ASSEMBLY-THEORY-FUSION/SIMULATION/KID_AT_Simulation_Blueprint.py' },
-                            { name: 'Thermodynamische Analyse (LaTeX)', path: '../07-ASSEMBLY-THEORY-FUSION/THERMODYNAMICS/kid_at_thermodynamic_analysis.tex' }
-                        ]
                     }
                 ],
                 renderMath(formula) {
                     if (typeof katex !== 'undefined') {
                         try {
-                            return katex.renderToString(formula, { displayMode: true, throwOnError: false });
+                            return katex.renderToString(formula, { displayMode: false, throwOnError: false });
                         } catch (e) {
                             return formula;
                         }
@@ -133,157 +586,5 @@
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-</head>
-<body class="bg-terminal-dark text-terminal-green font-mono min-h-screen selection:bg-terminal-green selection:text-black scanlines relative" x-data="landingLogic()">
-    
-    <!-- Top Bar -->
-    <nav class="border-b border-terminal-dim/30 bg-black/95 backdrop-blur-md sticky top-0 z-50 shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-3 h-3 bg-terminal-green rounded-sm shadow-[0_0_10px_#00ff41]"></div>
-                <span class="font-bold tracking-widest text-lg text-white">KID_FRAMEWORK<span class="text-terminal-green animate-blink">_</span></span>
-            </div>
-            <div class="hidden sm:flex space-x-8 text-xs tracking-widest font-bold">
-                <a href="#abstract" class="text-terminal-dim hover:text-terminal-highlight transition-colors">ABSTRAKT</a>
-                <a href="#repository" class="text-terminal-dim hover:text-terminal-highlight transition-colors">STRUKTUR-INDEX</a>
-            </div>
-        </div>
-    </nav>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
-        
-        <!-- Hero Section -->
-        <section class="text-center space-y-6 relative pt-8 pb-12 border-b border-terminal-dim/20">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-terminal-dim/5 blur-[100px] rounded-full pointer-events-none"></div>
-            
-            <div class="inline-block border border-terminal-dim/50 bg-terminal-dim/10 px-4 py-1 text-xs tracking-widest uppercase mb-4 text-terminal-highlight">
-                Status: Theoretisches Konstrukt
-            </div>
-            
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter relative z-10 uppercase text-white drop-shadow-[0_0_15px_rgba(0,255,65,0.2)]">
-                Kinematic <br class="hidden sm:block lg:hidden">Interaction <br class="hidden sm:block lg:hidden">Dynamics
-            </h1>
-            <p class="max-w-3xl mx-auto text-terminal-dim text-lg relative z-10 leading-relaxed mt-6">
-                Ein interdisziplinäres Repository an der Schnittstelle von Philosophie, Ontologie und strikter mathematischer Formalisierung. Konzipiert zur Dekonstruktion temporaler Datenströme.
-            </p>
-            <div class="pt-8 flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-                <a href="../README.md" target="_blank" rel="noopener noreferrer" class="bg-terminal-green text-black px-8 py-4 font-bold uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_15px_rgba(0,255,65,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
-                    System-Readme lesen
-                </a>
-            </div>
-        </section>
-
-        <!-- Abstract & Core Definition -->
-        <section id="abstract" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div class="space-y-6">
-                <h2 class="text-2xl font-bold uppercase tracking-widest text-white flex items-center gap-3">
-                    <span class="w-4 h-4 bg-terminal-green block"></span> System-Architektur
-                </h2>
-                <div class="text-terminal-dim leading-relaxed space-y-4 text-sm sm:text-base">
-                    <p>
-                        Das KID-Framework adaptiert Paradigmen des Software-Engineerings (Versionierung, Refactoring, Audits), um abstrakte ontologische und epistemologische Konzepte maschinenlesbar zu strukturieren.
-                    </p>
-                    <p>
-                        Die Methodik zwingt theoretische Gedanken in strukturierte Formate: <span class="text-terminal-highlight">XML</span> für Audits, <span class="text-terminal-highlight">LaTeX</span> für algorithmische Beweisführung und <span class="text-terminal-highlight">Markdown</span> für Logik-Validierungen.
-                    </p>
-                </div>
-                
-                <div class="border border-terminal-dim/30 bg-black/50 p-4 mt-6">
-                    <div class="text-xs text-terminal-dim uppercase tracking-widest mb-3 border-b border-terminal-dim/30 pb-2">Meta-Dokumente</div>
-                    <div class="flex flex-col gap-2 font-mono text-sm">
-                        <a href="../README.md" target="_blank" rel="noopener noreferrer" class="text-terminal-green hover:text-white transition-colors">> README.md (Initialisierungs-Spezifikation)</a>
-                        <a href="../NAVIGATION.md" target="_blank" rel="noopener noreferrer" class="text-terminal-green hover:text-white transition-colors">> NAVIGATION.md (Topologische Karte)</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Mathematical Calculus Box -->
-            <div class="bg-black border border-terminal-dim/40 p-6 sm:p-8 relative shadow-[0_0_30px_rgba(0,143,17,0.1)]">
-                <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-terminal-green to-transparent opacity-50"></div>
-                
-                <div class="flex justify-between items-center border-b border-terminal-dim/30 pb-3 mb-6">
-                    <div class="text-xs text-terminal-highlight uppercase tracking-widest">KID-Calculus [Kern-Theorem]</div>
-                    <div class="text-[10px] text-terminal-dim">v1.0.4 / TEX</div>
-                </div>
-                
-                <div class="text-white overflow-x-auto text-lg sm:text-xl py-6 flex justify-center bg-terminal-dark/50 border border-terminal-dim/10 rounded" 
-                     x-html="renderMath('K(I,D) = \\int_{t_0}^{t_1} \\frac{\\Delta I_{causal}}{\\rho_{interaction}} dt')">
-                </div>
-                
-                <ul class="mt-6 text-xs text-terminal-dim font-mono space-y-2 border-b border-terminal-dim/20 pb-4 mb-4">
-                    <li><span class="text-terminal-green font-bold">I</span> = Interaktion (Kausale Delta-Werte)</li>
-                    <li><span class="text-terminal-green font-bold">D</span> = Dynamik (System-Varianz)</li>
-                    <li><span class="text-terminal-green font-bold">ρ</span> = Interaktionsdichte</li>
-                </ul>
-                <a href="../04-FORMALIZATION/KID_Calculus_Formalization.tex" target="_blank" rel="noopener noreferrer" class="text-xs text-terminal-highlight hover:text-terminal-green transition-colors font-bold uppercase tracking-widest">
-                    [TEX-Dokument öffnen]
-                </a>
-            </div>
-        </section>
-
-        <!-- Repository Architecture Index -->
-        <section id="repository" class="space-y-10">
-            <div class="border-b border-terminal-dim/30 pb-4">
-                <h2 class="text-3xl font-bold uppercase tracking-widest text-white">Repository Index</h2>
-                <p class="text-terminal-dim mt-2 text-sm">Direktzugriff auf die 7 sequenziellen Entwicklungsphasen des theoretischen Konstrukts — inklusive der neuen KID-AT Fusion.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <template x-for="mod in modules" :key="mod.id">
-                    <div class="border border-terminal-dim/30 bg-[#080808] p-6 hover:border-terminal-green transition-colors duration-300 relative flex flex-col h-full group">
-                        
-                        <!-- NEW Badge -->
-                        <div x-show="mod.id === '07'" class="absolute -top-2 -right-2 bg-terminal-green text-black text-[10px] font-bold px-2 py-0.5 uppercase tracking-widest shadow-[0_0_10px_rgba(0,255,65,0.5)] z-10">Neu</div>
-                        
-                        <!-- Header with Directory Link -->
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="text-2xl font-bold text-terminal-dim opacity-50 group-hover:opacity-100 group-hover:text-terminal-green transition-all" x-text="mod.id"></span>
-                            <a :href="mod.dirPath" target="_blank" rel="noopener noreferrer" class="border border-terminal-dim/50 text-terminal-dim text-[10px] uppercase font-bold px-2 py-1 hover:bg-terminal-green hover:text-black hover:border-terminal-green transition-colors">
-                                /Ordner Öffnen
-                            </a>
-                        </div>
-                        
-                        <h3 class="text-lg font-bold text-white mb-2 tracking-wide uppercase" x-text="mod.title"></h3>
-                        <p class="text-terminal-dim text-xs leading-relaxed mb-6" x-text="mod.desc"></p>
-                        
-                        <!-- File Links -->
-                        <div class="mt-auto border-t border-terminal-dim/20 pt-4 space-y-2">
-                            <div class="text-[10px] uppercase text-terminal-dim/70 tracking-widest mb-2">Zentrale Dokumente:</div>
-                            <template x-for="file in mod.files" :key="file.path">
-                                <a :href="file.path" target="_blank" rel="noopener noreferrer" class="file-link block text-xs text-terminal-highlight font-mono truncate">
-                                    > <span x-text="file.name"></span>
-                                </a>
-                            </template>
-                        </div>
-
-                    </div>
-                </template>
-
-                <!-- Archival Node -->
-                <div class="border border-dashed border-terminal-dim/50 bg-black/50 p-6 flex flex-col items-center justify-center text-center opacity-70 hover:opacity-100 transition-opacity">
-                    <div class="text-2xl mb-2">📁</div>
-                    <h3 class="text-terminal-highlight font-bold uppercase text-sm mb-2">Archiv-Originale</h3>
-                    <p class="text-[10px] text-terminal-dim mb-4">Unveränderte Ursprungsdokumente vor dem Refactoring.</p>
-                    <a href="../06-ARCHIVE-ORIGINAL/" target="_blank" rel="noopener noreferrer" class="border border-terminal-dim text-terminal-green text-xs px-4 py-2 hover:bg-terminal-green hover:text-black transition-colors mb-2">
-                        /06-ARCHIVE-ORIGINAL/
-                    </a>
-                    <a href="../06-ARCHIVE-ORIGINAL/README.md" target="_blank" rel="noopener noreferrer" class="text-[10px] text-terminal-dim hover:text-white transition-colors font-mono">
-                        > README.md lesen
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-terminal-dim/30 mt-20 py-8 bg-black text-center border-b-4 border-b-terminal-green">
-        <div class="text-terminal-highlight text-sm font-bold tracking-widest uppercase">KID Framework Repository</div>
-        <div class="text-terminal-dim text-[10px] tracking-widest mt-2 font-mono">
-            SYS.TIME: <span x-text="new Date().toISOString()"></span> | LOKALER ZUGRIFF
-        </div>
-    </footer>
-
 </body>
 </html>
