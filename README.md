@@ -71,7 +71,7 @@ At maximal toast efficiency, the system reaches a universal fixed point where **
 
 Bei maximaler Toast-Effizienz erreicht das System einen universellen Fixpunkt, wo **$C = 1$**.
 
-$$T \equiv C \quad \text{at} \quad \eta_{thermo}^{max}$$
+$$T \equiv C \; \text{at} \; \eta_{thermo}^{max}$$
 
 $$\eta_{thermo} = \frac{4C}{(1+C)^2}$$
 
@@ -83,8 +83,8 @@ $$\eta_{thermo} = \frac{4C}{(1+C)^2}$$
 
 <div align="center">
 
-| Level | Phenomenon / Phänomen | AI_min | $C^*$ | Status |
-|:-----:|:----------------------|:------:|:-----:|:------:|
+| Level | Phenomenon / Phänomen | AI_min | C* | Status |
+|:-----:|:----------------------|:------:|:--:|:------:|
 | 1 | Physical structures / Physikalische Strukturen | 1 | 0.01 | ✅ |
 | 2 | Chemical/molecular / Chemisch/Molekular | 10 | 0.05 | ✅ |
 | 3 | Biological/living / Biologisch/Lebendig | 100 | 0.15 | ✅ |
