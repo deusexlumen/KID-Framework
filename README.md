@@ -3,7 +3,7 @@
 <!-- Animated Header -->
 <pre>
 ╔══════════════════════════════════════════════════════════════════╗
-║  <b>K I N E M A T I C &nbsp; I N T E R A C T I O N &nbsp; D Y N A M I C S</b>  ║
+║  <b>K O N D E N S I E R T &nbsp; I N F O R M A T I O N S &nbsp; D I C H T E</b>  ║
 ╚══════════════════════════════════════════════════════════════════╝
 </pre>
 
