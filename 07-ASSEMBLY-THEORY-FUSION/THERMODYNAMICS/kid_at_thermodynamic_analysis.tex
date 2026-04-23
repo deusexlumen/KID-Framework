@@ -69,6 +69,11 @@ The Toast Number $T(x)$ characterizes the thermodynamic state of a system:
 \begin{equation}
 \boxed{T(x) = \frac{\text{KID}(x)}{\text{KID}_{\max}} \cdot \frac{\tau_{\text{age}}}{\tau_{\text{relax}}}}
 \end{equation}
+
+\begin{remark}[Didaktische Metapher]
+The designation ``Toast Number'' is a \textbf{didactic metaphor}. The mathematical function $\eta_{\text{thermo}}(T) = 4T/(1+T)^2$ is a \textbf{specific construction of this framework} and should not be confused with thermodynamic efficiency in the Carnot sense. The Carnot efficiency $\eta_C = 1 - T_{\text{cold}}/T_{\text{warm}}$ describes maximum work extractable from a heat flow; $\eta_{\text{thermo}}(T)$ describes the optimum of structure-building per entropy export. Both are dimensionless efficiency measures, but their physical meaning differs. See \texttt{KID\_AT\_Final\_Synthesis.md}, Definition 1.6, for further discussion.
+\end{remark}
+
 with the regimes:
 \begin{itemize}[noitemsep]
 \item $T \ll 1$: ``untoasted'' --- near-equilibrium, minimal structure
@@ -872,14 +877,18 @@ CV-2 (Emergence Non-Sequitur) states that the original KID-AT framework committe
 \subsection{Theorem 7.1: Phase Space of High-AI Attractors}
 
 \begin{theorem}[Multiple High-AI Attractors]
-In the high-$AI$ region of the efficiency landscape, there exist at least three distinct attractor types:
+In the high-$AI$ region of the efficiency landscape, there exist at least three distinct attractor types, corresponding to the three attractors $A_\Phi$ (Ph\"anomenologisch / IIT), $A_\mu$ (Minimal / FEP), and $A_\zeta$ (Dissoziiert / Distributed) defined in the main synthesis:
 \begin{enumerate}[label=\textbf{A\arabic*.}]
-\item \textbf{Integrated Information Attractor} ($\Phi$-attractor): Systems maximizing integrated information $\Phi$ (IIT-type consciousness)
-\item \textbf{Predictive Processing Attractor} ($\mu$-attractor): Systems maximizing prediction accuracy through hierarchical models (FEP-type cognition)
-\item \textbf{Distributed Coordination Attractor} ($\zeta$-attractor): Systems maximizing distributed coordination without centralized integration (collective intelligence)
+\item \textbf{Integrated Information Attractor} ($A_\Phi$ / IIT): Systems maximizing integrated information $\Phi$ (IIT-type consciousness)
+\item \textbf{Predictive Processing Attractor} ($A_\mu$ / FEP): Systems maximizing prediction accuracy through hierarchical models (FEP-type cognition)
+\item \textbf{Distributed Coordination Attractor} ($A_\zeta$ / Distributed): Systems maximizing distributed coordination without centralized integration (collective intelligence)
 \end{enumerate}
 All three can achieve arbitrarily high $AI$ while maintaining $T \approx 1$.
 \end{theorem}
+
+\begin{remark}[Unified Attractor Legend]
+The attractor names are unified across all KID-AT documents: $A_\Phi$ = Ph\"anomenologisch / IIT, $A_\mu$ = Minimal / FEP, $A_\zeta$ = Dissoziiert / Distributed. See \texttt{TERMINOLOGY.md} for the complete glossary and \texttt{KID\_AT\_Final\_Synthesis.md}, Definition 1.8, for the phenomenological interpretation.
+\end{remark}
 
 \subsection{Proof of Theorem 7.1}
 
@@ -998,12 +1007,16 @@ where $w_i$ are weights on each attractor type. Consciousness (as normally defin
 
 \subsection{Lemma 7.5: Physical Self-Measurement Limits (CV-4 Resolution)}
 
-\begin{lemma}[Physical Self-Measurement Bound]
+\begin{lemma}[Physical Self-Measurement Bound --- Heuristic]
 Replacing the G\"odel analogy (CV-4), the physical limit on self-measurement is:
 \begin{equation}
 \text{KID}_{\text{self}}(x) \leq \frac{E_{\text{available}} \cdot \tau_{\text{measure}}}{k_B T \ln 2 \cdot V_{\text{eff}}}
 \end{equation}
 A system cannot measure (know) itself beyond its own thermodynamic resources.
+
+\begin{remark}[Status: Heuristic]
+This bound is a \textbf{physical heuristic}, not a theorem in the strict sense. The combination of Landauer principle ($\Delta E \geq k_B T \ln 2 \cdot \Delta I$) with the Margolus-Levitin theorem ($\tau_{\text{measure}} \geq \hbar/E_{\text{measure}}$) and self-containment ($V_{\text{measure}} < V_{\text{eff}}$) constitutes a consistent physical argumentation chain, but the assumption that self-measurement is thermodynamically constrained in this exact form is not generally proven for all system types. The bound should be interpreted as a \textbf{qualitative scaling relation}. See \texttt{KID\_AT\_Final\_Synthesis.md}, Axiom U-7, for the full discussion and \texttt{TERMINOLOGY.md} for notation.
+\end{remark}
 \end{lemma}
 
 \begin{proof}
@@ -1024,7 +1037,7 @@ Converting to KID:
 \text{KID}_{\text{self}} = \frac{I_{\text{self}} \cdot \tau_{\text{measure}}}{V_{\text{eff}}} \leq \frac{E_{\text{available}} \cdot \tau_{\text{measure}}}{k_B T \ln 2 \cdot V_{\text{eff}}}
 \end{equation}
 
-This is a physical limit, not a logical one (addressing CV-4). \hfill $\square$
+This is a physical limit, not a logical one (addressing CV-4). See \texttt{KID\_AT\_Final\_Synthesis.md}, Axiom U-7, for the full heuristic discussion. \hfill $\square$
 \end{proof}
 
 % ============================================================================
@@ -1125,10 +1138,10 @@ Burnt & $T \gg 1$ & $\approx 4/T$ & Over-constrained, fragile \\
 \subsection{Implications for the KID-AT Framework}
 
 \begin{enumerate}[label=(\roman*)]
-\item \textbf{CV-1 Resolution}: KID is treated as a dimensionless ratio throughout, avoiding dimensional inconsistency.
-\item \textbf{CV-2 Resolution}: Consciousness is demoted from ``necessary consequence'' to ``one attractor among many.'' High $AI$ implies complex information processing, not any specific phenomenology.
-\item \textbf{CV-3 Resolution}: Kolmogorov complexity $K(\cdot)$ replaces semantic information, grounding the framework in algorithmic information theory.
-\item \textbf{CV-4 Resolution}: Physical self-measurement limits replace G\"odelian incompleteness, providing a thermodynamic bound on self-knowledge.
+\item \textbf{CV-1 Resolution}: KID is treated as a dimensionless ratio throughout, avoiding dimensional inconsistency. See \texttt{KID\_AT\_Final\_Synthesis.md}, Definition 1.2, and \texttt{informational\_condensation\_point.md}, Definition 0.1.
+\item \textbf{CV-2 Resolution}: Consciousness is demoted from ``necessary consequence'' to ``one attractor among many.'' High $AI$ implies complex information processing, not any specific phenomenology. See Theorem 7.1 above and \texttt{KID\_AT\_Final\_Synthesis.md}, Axiom U-5.
+\item \textbf{CV-3 Resolution}: Kolmogorov complexity $K(\cdot)$ replaces semantic information, grounding the framework in algorithmic information theory. See \texttt{KID\_AT\_Final\_Synthesis.md}, Definition 1.1.
+\item \textbf{CV-4 Resolution}: Physical self-measurement limits replace G\"odelian incompleteness, providing a thermodynamic bound on self-knowledge. See Lemma 7.5 above and \texttt{KID\_AT\_Final\_Synthesis.md}, Axiom U-7.
 \end{enumerate}
 
 \subsection{Connection to Literature}

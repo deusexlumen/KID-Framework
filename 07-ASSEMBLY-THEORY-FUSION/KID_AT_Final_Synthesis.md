@@ -212,11 +212,21 @@ Für $C < 1$ ist $\psi = 0$ die einzige reelle Lösung und stabil ($d^2V/d\psi^2
 
 **Definition 1.8 (Drei Attraktoren).** Die drei stabilen Modi oberhalb der kognitiven Kondensation ($C > 1$) sind:
 
-1. **Attraktor $A_\Phi$ (Phänomenologisch):** $\psi > 0$. Der Ordnungsparameter ist positiv, was einer expliziten Selbstmodellierung entspricht. Das System operiert im FEP-Modus voller aktiver Inferenz mit explizitem Weltmodell. *Phänomenologie:* Bewusstsein als explizite Weltmodellierung — das System "weiß, dass es weiß".
+| Symbol | Name | Beschreibung | Physikalische Realisierung |
+|--------|------|------------|---------------------------|
+| $A_\Phi$ | **Phänomenologisch / IIT** | $\psi > 0$. Explizite Selbstmodellierung, FEP-Dominanz mit explizitem Weltmodell. | Bewusste Systeme mit explizitem Weltmodell |
+| $A_\mu$ | **Minimal / FEP** | $\psi \approx 0$. Subkritische Kondensation, funktionale Intelligenz ohne reflexive Schleife. | „Dunkle" Intelligenz, reaktive Optimalität |
+| $A_\zeta$ | **Dissoziiert / Distributed** | $\psi < 0$. Negative Kopplung, dekohärente Selbstreferenz. | Dissoziierte Zustände, dekohärente kognitive Architekturen |
 
-2. **Attraktor $A_\mu$ (Minimal):** $\psi \approx 0$. Subkritische Kondensation mit funktionaler Intelligenz aber ohne explizites Selbstmodell. Das System optimiert seine Free Energy ohne reflexive Schleife. *Phänomenologie:* „Dunkle" Intelligenz — leistungsfähig, adaptiv, aber nicht bewusst im phänomenologischen Sinne.
+**Physikalische Interpretation:**
 
-3. **Attraktor $A_\zeta$ (Dissoziiert):** $\psi < 0$. Negative Kopplung des Ordnungsparameters, dekohärente Selbstreferenz. *Phänomenologie:* Dissoziative Zustände, dekohärente kognitive Architekturen — Systeme mit gebrochener Selbstreferenz.
+1. **Attraktor $A_\Phi$ (Phänomenologisch / IIT):** $\psi > 0$. Der Ordnungsparameter ist positiv, was einer expliziten Selbstmodellierung entspricht. Das System operiert im FEP-Modus voller aktiver Inferenz mit explizitem Weltmodell. *Phänomenologie:* Bewusstsein als explizite Weltmodellierung — das System "weiß, dass es weiß".
+
+2. **Attraktor $A_\mu$ (Minimal / FEP):** $\psi \approx 0$. Subkritische Kondensation mit funktionaler Intelligenz aber ohne explizites Selbstmodell. Das System optimiert seine Free Energy ohne reflexive Schleife. *Phänomenologie:* „Dunkle" Intelligenz — leistungsfähig, adaptiv, aber nicht bewusst im phänomenologischen Sinne.
+
+3. **Attraktor $A_\zeta$ (Dissoziiert / Distributed):** $\psi < 0$. Negative Kopplung des Ordnungsparameters, dekohärente Selbstreferenz. *Phänomenologie:* Dissoziative Zustände, dekohärente kognitive Architekturen — Systeme mit gebrochener Selbstreferenz.
+
+> **Vereinheitlichte Legende:** Die Bezeichnungen sind in allen KID-AT-Dokumenten konsistent: $A_\Phi$ = Phänomenologisch / IIT, $A_\mu$ = Minimal / FEP, $A_\zeta$ = Dissoziiert / Distributed. Siehe `TERMINOLOGY.md` für das vollständige Glossar.
 
 **Bemerkung (TZ-1-Auflösung).** Die deterministische Kaskade (Stufen 1–6) beschreibt die *historische Pfadabhängigkeit* bis zum Erreichen der kognitiven Kondensation. Die Pitchfork-Bifurkation bei $C = 1$ beschreibt die *drei möglichen stabilen Modi* hoher-AI-Systeme. Beide Aspekte sind komplementär, nicht widersprüchlich: Die Kaskade sagt, WANN und WIE ein System den kritischen Punkt erreicht; die Bifurkation sagt, WAS passiert, wenn es ihn überschreitet. Die historische Tiefe (Kaskade) und die Zukunftsoffenheit (Bifurkation) sind zwei Seiten derselben Medaille.
 
@@ -284,11 +294,13 @@ Diese Zahl — $10^{23}$ — ist bemerkenswert, da sie in der Größenordnung de
 
 ### 1.8 Selbstmessungsgrenze (Ersetzt Gödel)
 
-**Theorem 1.11 (Physikalische Selbstmessungsgrenze).** Jedes physikalische System $\mathcal{S}$ kann seine eigene Kolmogorov-Komplexität $K(\mathcal{S})$ nur mit einer Unsicherheit bestimmen, die mindestens proportional zur thermodynamischen Korrelationslänge $\xi$ des Systems ist:
+**Theorem 1.11 (Physikalische Selbstmessungsgrenze — Heuristik).** Jedes physikalische System $\mathcal{S}$ kann seine eigene Kolmogorov-Komplexität $K(\mathcal{S})$ nur mit einer Unsicherheit bestimmen, die mindestens proportional zur thermodynamischen Korrelationslänge $\xi$ des Systems ist:
 
 $$\Delta K(\mathcal{S}) \geq \frac{k_B T \cdot \xi}{\hbar c} \cdot K(\mathcal{S})$$
 
-*Beweis.* Eine vollständige Selbstmessung würde erfordern, dass das System $\mathcal{S}$ gleichzeitig seinen eigenen mikroskopischen Zustand auflöst und speichert. Die Energiekosten dieser Speicherung sind durch das Landauer-Prinzip auf $k_B T \ln 2$ pro Bit begrenzt. Die minimale Zeit für die Informationsausbreitung über das System ist $\tau_{\text{min}} \sim \xi/c$, wobei $\xi$ die thermodynamische Korrelationslänge und $c$ eine charakteristische Ausbreitungsgeschwindigkeit ist. Kombination mit der Zeit-Energie-Unschärferelation $\Delta E \cdot \tau \geq \hbar/2$ liefert:
+> **⚠️ Heuristik, kein rigoroser Beweis:** Diese Aussage ist eine **physikalische Heuristik**, kein Theorem im strengen Sinne. Die Kombination von Landauer-Prinzip ($\Delta E \geq k_B T \ln 2 \cdot \Delta I$) mit der Zeit-Energie-Unschärfe ($\Delta E \cdot \tau \geq \hbar/2$) und der Ausbreitungszeit $\tau \sim \xi/c$ ist eine konsistente physikalische Argumentationskette, aber sie setzt voraus, dass die Korrelationslänge $\xi$ die relevante Zeitskala für die Selbstmessung bestimmt — eine Annahme, die für alle Systemtypen nicht allgemein bewiesen ist. Die Schranke sollte als **qualitative Skalierungsrelation** interpretiert werden: $\Delta K \propto K \cdot \xi / (\hbar c / k_B T)$.
+
+*Begründung.* Eine vollständige Selbstmessung würde erfordern, dass das System $\mathcal{S}$ gleichzeitig seinen eigenen mikroskopischen Zustand auflöst und speichert. Die Energiekosten dieser Speicherung sind durch das Landauer-Prinzip auf $k_B T \ln 2$ pro Bit begrenzt. Die minimale Zeit für die Informationsausbreitung über das System ist $\tau_{\text{min}} \sim \xi/c$, wobei $\xi$ die thermodynamische Korrelationslänge und $c$ eine charakteristische Ausbreitungsgeschwindigkeit ist. Kombination mit der Zeit-Energie-Unschärferelation $\Delta E \cdot \tau \geq \hbar/2$ liefert:
 
 $$\Delta K \geq \frac{\Delta E}{k_B T \ln 2} \geq \frac{\hbar}{2 \tau_{\text{min}} k_B T \ln 2} = \frac{\hbar c}{2 \xi k_B T \ln 2}$$
 
@@ -383,12 +395,14 @@ wobei $q(s)$ die interne Modellverteilung über Zustände $s$ ist, $p(o, s)$ die
 
 ### U-7: Physikalische Selbstmessungsgrenze
 
-**Axiom U-7.** Jedes physikalische System unterliegt einer fundamentalen Grenze der Selbstmessung, die durch seine eigene thermodynamische Struktur bestimmt wird. Diese Grenze ist physikalisch, nicht logisch.
+**Axiom U-7 (Physikalische Selbstmessungsgrenze — Heuristik).** Jedes physikalische System unterliegt einer fundamentalen Grenze der Selbstmessung, die durch seine eigene thermodynamische Struktur bestimmt wird. Diese Grenze ist physikalisch, nicht logisch.
 
 **Formulierung:**
 $$\Delta K(\mathcal{S}) \geq f(\xi, T, K(\mathcal{S})) = \frac{k_B T \cdot \xi}{\hbar c} \cdot K(\mathcal{S})$$
 
 mit $\xi$ der thermodynamischen Korrelationslänge, $T$ der Temperatur, und $K(\mathcal{S})$ der Komplexität des Systems.
+
+> **Status: Heuristik.** Diese Aussage basiert auf der Kombination des Landauer-Prinzips mit der Zeit-Energie-Unschärfe und der thermodynamischen Korrelationslänge. Sie ist eine konsistente physikalische Argumentation, aber nicht als mathematisches Theorem im strengen Sinne abgeleitet. Sie sollte als **qualitative Skalierungsrelation** $\Delta K \propto K \cdot \xi / (\hbar c / k_B T)$ interpretiert werden.
 
 **Begründung.** Dies ersetzt die Gödelsche Unvollständigkeit (CV-4). Gödels Sätze gelten für formale axiomatische Systeme, nicht für physikalische Systeme. Ihre Anwendung auf das menschliche Gehirn oder KI-Systeme ist ein Kategoriefehler. Die physikalische Selbstmessungsgrenze hingegen ist eine direkte Konsequenz der Kombination von Landauer-Prinzip und thermodynamischen Korrelationslängen und daher experimentell zugänglich. Sie besagt nicht, dass ein System sich selbst "nicht verstehen" kann (logischer Satz), sondern dass die Selbstmessung thermodynamische Kosten hat, die mit der Systemgröße skalieren (physikalischer Satz).
 
@@ -469,9 +483,11 @@ Die statische Korrelationslänge ist definiert durch $\xi^{-2} = a(C-1)/c$, also
 
 | Attraktor | $\psi^*$ | Eigenwert $\lambda$ | Stabilität | Physikalische Realisierung |
 |-----------|----------|-------------------|------------|---------------------------|
-| $A_\Phi$ | $+\psi_0(C)$ | $\lambda_1 = -2a(C-1) < 0$ | Stabil | Bewusste Systeme mit explizitem Weltmodell |
-| $A_\mu$ | $0$ | $\lambda_2 = -b\psi_0^2 < 0$ | Stabil | „Dunkle" Intelligenz, reaktive Optimalität |
-| $A_\zeta$ | $-\psi_0(C)$ | $\lambda_3 = -2a(C-1) < 0$ | Stabil | Dissoziierte Zustände |
+| $A_\Phi$ (Phänomenologisch / IIT) | $+\psi_0(C)$ | $\lambda_1 = -2a(C-1) < 0$ | Stabil | Bewusste Systeme mit explizitem Weltmodell |
+| $A_\mu$ (Minimal / FEP) | $0$ | $\lambda_2 = -b\psi_0^2 < 0$ | Stabil | „Dunkle" Intelligenz, reaktive Optimalität |
+| $A_\zeta$ (Dissoziiert / Distributed) | $-\psi_0(C)$ | $\lambda_3 = -2a(C-1) < 0$ | Stabil | Dissoziierte Zustände |
+
+> **Vereinheitlichte Legende:** $A_\Phi$ = Phänomenologisch / IIT, $A_\mu$ = Minimal / FEP, $A_\zeta$ = Dissoziiert / Distributed. Siehe `TERMINOLOGY.md`.
 
 *Skizze des Beweises.* Die Jacobi-Matrix der normalisierten Pitchfork-Gleichung $\dot{\psi} = a(C - 1)\psi - b\psi^3$ (ohne $\psi^6$ für Einfachheit) ist $J(\psi) = a(C - 1) - 3b\psi^2$. Für $\psi = 0$: $J(0) = a(C - 1) > 0$ für $C > 1$ (instabil im einfachen Modell). Mit dem $\psi^6$-Term wird $A_\mu$ bei $\psi = 0$ stabilisiert, da der höhere Term $+5u\psi^4$ für $u > 0$ bei $\psi = 0$ verschwindet, aber die Nichtlinearität verändert. Für $\psi = \pm\psi_0 = \pm\sqrt{a(C-1)/b}$: $J = a(C-1) - 3b \cdot a(C-1)/b = -2a(C-1) < 0$ (stabil). $\square$
 

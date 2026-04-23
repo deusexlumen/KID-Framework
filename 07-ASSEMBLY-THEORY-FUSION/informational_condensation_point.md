@@ -98,15 +98,18 @@ The order parameter $\psi$ is:
 
 **Definition 1.2 (Landau-Ginzburg Free Energy Functional).** The effective free energy for the KID-AT transition is:
 
-$$\boxed{F[\psi, \nabla\psi] = \int d^d r \left[ \frac{a}{2}(\Theta - \Theta_c)\psi^2 + \frac{b}{4}\psi^4 + \frac{c}{2}(\nabla\psi)^2 + \lambda \cdot \text{AI}(x) \cdot \psi \right]}$$
+$$\boxed{F[\psi, \nabla\psi] = \int d^d r \left[ \frac{a}{2}(\Theta - \Theta_c)\psi^2 + \frac{b}{4}\psi^4 + \frac{u}{6}\psi^6 + \frac{c}{2}(\nabla\psi)^2 + \lambda \cdot \text{AI}(x) \cdot \psi \right]}$$
 
 where:
 - $a > 0$: Quadratic coefficient (thermal expansion parameter)
 - $b > 0$: Quartic coefficient (ensures stability)
+- $u \geq 0$: Sextic coefficient (controls tricritical crossover; $u = 0$ → tricritical point)
 - $c > 0$: Stiffness (gradient energy)
 - $\Theta_c$: Critical temperature for the ICP
 - $\lambda$: Coupling between assembly index and condensation
 - AI$(x)$: Assembly index of object $x$
+
+> **Note:** The $\psi^6$-term is essential for describing the tricritical universality class. For $u = 0$, the transition is tricritical ($\beta = 0.25$); for $u > 0$, it crosses over into the 3D-Ising class ($\beta = 0.326$). See KID_AT_Final_Synthesis.md, Definition 1.4, for the full sextic LG functional with AI and Kolmogorov coupling.
 
 **Theorem 1.1 (Existence of ICP).** *Given the free energy functional $F[\psi]$ with $b > 0$, there exists a unique critical temperature $\Theta_c$ at which the system undergoes a second-order phase transition from $\psi = 0$ to $\psi \neq 0$.*
 
@@ -504,6 +507,8 @@ $$\boxed{F_{\text{total}}[\{\psi_n\}] = \sum_{n=0}^{N-1} F_n[\psi_n] + \sum_{n<m
 
 *where $F_n$ is the level-$n$ Landau-Ginzburg functional and $J_{nm}$ are inter-level coupling constants. The hierarchy forms a **cascade of pitchfork bifurcations** as $C$ increases.*
 
+> **Cross-reference:** The three attractors $A_\Phi$ (Ph\"anomenologisch / IIT), $A_\mu$ (Minimal / FEP), and $A_\zeta$ (Dissoziiert / Distributed) defined in `KID_AT_Final_Synthesis.md`, Definition 1.8, correspond to the stable fixed points of the highest-level ($n=N-1$) pitchfork. See `TERMINOLOGY.md` for the unified legend.
+
 **Proof.** Each level has its own order parameter $\psi_n$ with free energy:
 
 $$F_n = \int d^d r \left[\frac{a_n}{2}(C - C_n^*)\psi_n^2 + \frac{b_n}{4}\psi_n^4 + \frac{c_n}{2}(\nabla\psi_n)^2\right]$$
@@ -523,6 +528,8 @@ As $C$ increases past each $C_n^*$, the quadratic term for $\psi_n$ changes sign
 $$\boxed{G_n \xrightarrow{C = C_n^*} H_n \times \mathbb{Z}_2^{(n)}}$$
 
 *where $H_n$ is the unbroken subgroup and $\mathbb{Z}_2^{(n)}$ represents the discrete choice of condensed phase (left/right, active/inactive, etc.).*
+
+> **Cross-reference:** At the highest level ($n=6$), the $\mathbb{Z}_2$ symmetry corresponds to the choice between $A_\Phi$ ($\psi > 0$) and $A_\zeta$ ($\psi < 0$), with $A_\mu$ ($\psi \approx 0$) as a metastable intermediate. See `KID_AT_Final_Synthesis.md`, Definition 1.8 and Theorem 1.6, and `TERMINOLOGY.md` for the unified attractor legend.
 
 **Proof.** At each ICP$^{(n)}$, the Landau-Ginzburg functional develops a double-well structure in $\psi_n$. The ground state manifold becomes:
 
@@ -567,6 +574,8 @@ where AI$_{\text{ref}} = 1$ (single primitive operation).
 $$\boxed{\hat{T}(x) = \frac{C(x)}{C_{\max}} \cdot \frac{\tau_{\text{age}}}{\tau_{\text{relax}}} = \frac{\text{KID}(x)}{\text{KID}_{\max}} \cdot \frac{\tau_{\text{age}}}{\tau_{\text{relax}}}}$$
 
 where $C_{\max} = \max_x C(x)$ in the system.
+
+> **⚠️ Didaktische Metapher:** The designation "toast-heuristic" is a **didactic metaphor**. The mathematical function $\eta_{\text{thermo}}(C) = 4C/(1+C)^2$ is a **specific construction of this framework** and should not be confused with thermodynamic efficiency in the Carnot sense. See `KID_AT_Final_Synthesis.md`, Definition 1.6, for the full discussion and `TERMINOLOGY.md` for notation.
 
 ---
 
