@@ -10,7 +10,7 @@
 <!-- Badges -->
 [![Version](https://img.shields.io/badge/Version-2.0-00d4aa?style=for-the-badge)](./CHANGELOG.md)
 [![Status](https://img.shields.io/badge/Status-Publication%20Ready-7c3aed?style=for-the-badge)](./07-ASSEMBLY-THEORY-FUSION/)
-[![License](https://img.shields.io/badge/License-CC%20BY--SA%204.0-f59e0b?style=for-the-badge)](./LICENSE)
+[![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red?style=for-the-badge)](./LICENSE)
 [![Website](https://img.shields.io/badge/Website-Live-00d4aa?style=for-the-badge)](https://deusexlumen.github.io/KID-Framework/)
 
 **[🇬🇧 English](#-english--deutsch) &nbsp;|&nbsp; [🇩🇪 Deutsch](#-deutsch)**
@@ -193,7 +193,7 @@ $$\eta_{thermo} = \frac{4C}{(1+C)^2}$$
 |:---------|:---------------------------|
 | [🌐 Website](https://deusexlumen.github.io/KID-Framework/) | Interactive landing page with visual equation |
 | [📍 NAVIGATION.md](NAVIGATION.md) | Complete topological map of all documents |
-| [📜 LICENSE](LICENSE) | CC BY-SA 4.0 — Open Science |
+| [📜 LICENSE](LICENSE) | All Rights Reserved |
 | [📝 CHANGELOG.md](CHANGELOG.md) | Version history and evolution |
 | [🤝 CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute to the framework |
 | [📐 KID Calculus](./04-FORMALIZATION/KID_Calculus_Formalization.tex) | Mathematical formalization (LaTeX) |
